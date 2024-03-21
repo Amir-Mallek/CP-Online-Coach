@@ -1,2 +1,2 @@
 # CP-Online-Coach
-Website that guides you in the competitive programming journey.
+Website that guides you in your competitive programming journey.
