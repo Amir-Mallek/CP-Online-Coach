@@ -15,7 +15,7 @@
 </head>
 <body>
 <div class="fixed-top vstack d-flex  align-items-end gap-2 mx-3 mt-3">
-    <button id="home" class="rounded-pill mb-2" style="width: 56px;height: 56px;" >
+    <button id="index" class="rounded-pill mb-2" style="width: 56px;height: 56px;" >
         <i class="bi bi-bing"></i>
     </button>
     <button id="problems" class="rounded-pill mb-2 " style="width: 56px;height: 56px;" >
@@ -37,7 +37,7 @@
     const buttons = document.querySelectorAll('button');
     buttons.forEach(butt => {
         butt.addEventListener('click', event => {
-            window.location.href = event.currentTarget.id;
+            window.location.href = event.currentTarget.id+".php";
         });
     });
 
