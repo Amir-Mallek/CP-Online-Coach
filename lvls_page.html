@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <title>lvls</title>
+</head>
+<style>
+    /* Styling for the rectangle icon */
+    .rectangle-icon {
+        width: 200px; /* Width of the rectangle */
+        height: 200px; /* Height of the rectangle */
+        background-color: #262E33; /* Background color of the rectangle */
+        border: 2px solid #BFA181; /* Border color and width */
+        border-radius: 5px; /* Border radius for rounded corners (optional) */
+        display: flex;
+        flex-direction: column; /* Arrange children vertically */
+        justify-content: center; /* Center vertically */
+        align-items: center; /* Center horizontally */
+        color: #BFA181; /* Color of the text/icon inside the rectangle */
+        margin-left: 30px;
+        margin-right: 30px;
+        font-size: 35px; /* Font size of the text/icon */
+        position: relative;
+        /* Position relative for absolute positioning */
+    }
+
+    body{
+        background-color: #0A1828; /* New background color for the entire webpage */
+        margin-top: 100px;
+        margin-bottom: 0;
+        margin-left: 70px;
+    }
+    .layer {
+        height: 250px;
+        background-color: #0A1828; /* New background color for the entire webpage */
+        display: flex;
+        /*justify-content: center;
+        align-items: center;*/
+        margin-top: 0px;
+
+    }
+    .progress-container {
+        display: block;
+        width: 150px;
+        height:20px;
+        background-color: #808080;
+        border-radius: 5px;
+        padding: 5px;
+        position: absolute;
+        top:150px
+    }
+
+    .progress-bar2 {
+        width: 50%;
+        height: 100%;
+        background-color: #BFA181;
+        border-radius: 5px;
+        transition: width 0.5s ease-in-out;
+    }
+    .lvl-number{
+        position: absolute;top:50px;
+    }
+</style>
+<body>
+<div class="layer">
+    <div class="rectangle-icon">
+        <p  class="lvl-number" >    lvl 1</p>
+        <p style="position: absolute;top :110px;font-size:17px">4/8 solved</p>
+        <div  class="progress-container" >
+            <div class="progress-bar2" id="myBar1"></div>
+        </div>
+    </div>
+    <div class="rectangle-icon">
+        <p  class="lvl-number" >    lvl 2</p>
+        <svg   style="position: absolute;top: 150px" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">
+            <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2M5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1"/>
+        </svg>
+    </div>
+    <div class="rectangle-icon">
+        <p  class="lvl-number" >    lvl 3</p>
+        <svg   style="position: absolute;top: 150px" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">
+            <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2M5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1"/>
+        </svg>
+    </div>
+    <div class="rectangle-icon">
+        <p  class="lvl-number" >    lvl 4</p>
+        <svg   style="position: absolute;top: 150px" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">
+            <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2M5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1"/>
+        </svg>
+    </div>
+</div>
+<div class="layer">
+    <div class="rectangle-icon">
+        <p  class="lvl-number" >    lvl 5</p>
+        <svg   style="position: absolute;top: 150px" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">
+            <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2M5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1"/>
+        </svg>
+    </div>
+    <div class="rectangle-icon">
+        <p  class="lvl-number" >    lvl 6</p>
+        <svg   style="position: absolute;top: 150px" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">
+            <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2M5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1"/>
+        </svg>
+    </div>
+    <div class="rectangle-icon">
+        <p  class="lvl-number" >    lvl 7</p>
+        <svg   style="position: absolute;top: 150px" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">
+            <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2M5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1"/>
+        </svg>
+    </div>
+    <div class="rectangle-icon">
+        <p  class="lvl-number" >    lvl 8</p>
+        <svg   style="position: absolute;top: 150px" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">
+            <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2M5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1"/>
+        </svg>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
