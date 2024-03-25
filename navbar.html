@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <style>
         button{
             background-color: #262E33;
@@ -18,6 +19,7 @@
             z-index: 2;
         }
     </style>
+    <title></title>
 </head>
 <body>
 
@@ -40,6 +42,9 @@
 </div>
 
 </body>
+<script crossorigin="anonymous"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     const buttons = document.querySelectorAll('button');
     buttons.forEach(butt => {
@@ -47,6 +52,8 @@
             window.location.href = event.currentTarget.id+".php";
         });
     });
-
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 </script>
+
 </html>
