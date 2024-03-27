@@ -12,7 +12,7 @@
 </head>
 <body>
 <!-- navbar -->
-<?php include_once 'pages/navbar.php'; ?>
+<?php include_once 'includes/navbar.php'; ?>
 
 <div class="container mx-auto p-4">
     <div class="row gap-3 justify-content-center">
@@ -306,7 +306,7 @@
                     <input id="taskInput" type="text" class=" p-1 form-control border-0 h-100" style="background-color:transparent;box-shadow: none;color: white;" placeholder="Add your task">
                     <button id="addButton" class="primary btn border-0 rounded-2 h-100" style="width:20%;background-color: #178582">Add</button>
                 </div>
-                <?php include_once "pages/todolist.php";?>
+                <?php include_once "includes/todolist.php";?>
             </div>
 
             <!-- upcoming contests -->
