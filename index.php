@@ -268,20 +268,20 @@
                             <div id="carouselExampleControls" class="carousel">
                                 <div class="carousel-inner">
                                     <div class="carousel-item active text-center align-self-center" >
-                                        <img src="images/badges/lightinghawk.png" class="h-75 w-75" alt="first solve" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lighting Hawk: First Solve" >
+                                        <img src="assets/img/badges/lightinghawk.png" class="h-75 w-75" alt="first solve" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lighting Hawk: First Solve" >
 
                                     </div>
                                     <div class="carousel-item text-center align-self-center">
-                                        <img src="images/badges/solveunder5.png" class="h-75 w-75" alt="solve under 5mins" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Speed: Solve Under 5 mins">
+                                        <img src="assets/img/badges/solveunder5.png" class="h-75 w-75" alt="solve under 5mins" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Speed: Solve Under 5 mins">
                                     </div>
                                     <div class="carousel-item text-center align-self-center">
-                                        <img src="images/badges/nightowl.png" class="h-75 w-75 " alt="solve 5 problems between midnight and 5am" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Night Owl: Solve 5 Problems Between Midnight and 5 am">
+                                        <img src="assets/img/badges/nightowl.png" class="h-75 w-75 " alt="solve 5 problems between midnight and 5am" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Night Owl: Solve 5 Problems Between Midnight and 5 am">
                                     </div>
                                     <div class="carousel-item text-center align-self-center">
-                                        <img src="images/badges/triathonphoenix.png" class="h-75 w-75 opacity-50" alt="Participate in 3 contests within a week" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Triathlon Phoenix: Participate in 3 Contests Within a Week">
+                                        <img src="assets/img/badges/triathonphoenix.png" class="h-75 w-75 opacity-50" alt="Participate in 3 contests within a week" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Triathlon Phoenix: Participate in 3 Contests Within a Week">
                                     </div>
                                     <div class="carousel-item text-center align-self-center">
-                                        <img src="images/badges/lonewolf.png" class="h-75 opacity-50 w-75" alt="rank among top 10" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lone Wolf: Rank Among Top 10">
+                                        <img src="assets/img/badges/lonewolf.png" class="h-75 opacity-50 w-75" alt="rank among top 10" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lone Wolf: Rank Among Top 10">
                                     </div>
 
                                 </div>
@@ -317,7 +317,7 @@
                         <a href="your_link_here" class="text-decoration-none">
                         <div class="card">
                             <div class="h-100 d-flex align-items-start">
-                                <img src="images/codeblinders_cover.jpg" class="card-img-top" alt="Code Blinders">
+                                <img src="assets/img/codeblinders_cover.jpg" class="card-img-top" alt="Code Blinders">
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">Code Blinders</h5>
@@ -330,7 +330,7 @@
                         <a href="your_link_here" class="text-decoration-none">
                         <div class="card">
                             <div class="h-100 d-flex align-items-start">
-                                <img src="images/eptsolvingcup_cover.jpg" class="card-img-top" alt="EPT Solving Cup">
+                                <img src="assets/img/eptsolvingcup_cover.jpg" class="card-img-top" alt="EPT Solving Cup">
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">EPT Solving Cup</h5>
@@ -343,7 +343,7 @@
                         <a href="your_link_here" class="text-decoration-none">
                         <div class="card">
                             <div class="h-100 d-flex align-items-start">
-                                <img src="images/wintercup_cover.png" class="card-img-top" alt="Winter Cup">
+                                <img src="assets/img/wintercup_cover.png" class="card-img-top" alt="Winter Cup">
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">Winter Cup</h5>
@@ -356,7 +356,7 @@
                         <a href="your_link_here" class="text-decoration-none">
                         <div class="card">
                             <div class="h-100 d-flex align-items-start">
-                                <img src="images/codeforces_cover.png" class="card-img-top" alt="Div 2">
+                                <img src="assets/img/codeforces_cover.png" class="card-img-top" alt="Div 2">
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">Div 2</h5>
