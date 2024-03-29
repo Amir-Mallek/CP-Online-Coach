@@ -1,4 +1,0 @@
-Bleu foncé classique #0A1828
-Turquoise #178582 
-Or #BFA181
-gris #262E33
