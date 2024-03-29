@@ -53,8 +53,9 @@
 </head>
 <body>
 
-<div id="navbar-container" class="vstack gap-2 mx-3 mt-3 position-fixed top-0 end-0">
-    <button id="index" class="rounded-pill mb-2" data-bs-toggle="tooltip" data-bs-placement="left" title="Home">
+<div id="navbar-container" class="vstack gap-2 ms-3 me-2 mt-3 position-fixed top-0 end-0">
+
+  <button id="index" class="rounded-pill mb-2" data-bs-toggle="tooltip" data-bs-placement="left" title="Home">
         <i class="bi bi-bing"></i>
     </button>
     <button id="problems" class="rounded-pill mb-2 " data-bs-toggle="tooltip" data-bs-placement="left" title="Problems" >
@@ -76,7 +77,8 @@ if(basename($_SERVER['PHP_SELF']) != 'index.php') {
     // Second part of the navbar (only shown on pages other than "index.php")
     echo '<button style="z-index: 2" type="button" class="rounded-pill position-fixed bottom-0 end-0 mb-3 me-3 w-auto py-2 px-4" data-bs-toggle="offcanvas" data-bs-target="#todo-list" aria-controls="offcanvasWithBothOptions" >
     To-Do List
-    <span class="badge text-bg-secondary">4</span>
+ <span id="todolist-badge" class="badge text-bg-secondary"></span>
+
 </button>
 
 <div class="offcanvas offcanvas-start" style="background-color: #061A26" data-bs-scroll="true" tabindex="-1" id="todo-list" aria-labelledby="offcanvasWithBothOptionsLabel">

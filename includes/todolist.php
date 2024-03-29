@@ -34,6 +34,16 @@
 <body>
 <div class="table container"></div>
 </body>
+
+<script src="../assets/js/ToDoList.js"></script>
+
+
+
+<!--    buildTask("Solve 2 problems in Game Theory",undefined,false);-->
+<!--    buildTask("Learn about BFS",undefined,true);-->
+<!--    buildTask("Problem Watermelon",undefined,false);-->
+<!--    buildTask("Participate in DIV2 Codeforces",undefined,true);-->
+
 <script>
     const tasksList =document.querySelector('.table');
 
