@@ -1,0 +1,151 @@
+:root {
+    --azrak: #061A26;
+    --azrakFetah: #178582;
+    --or: #BFA181;
+    --gris: #262E33;
+}
+
+body {
+    background-color: #061A26;
+}
+
+h1, h2, h3, h4 {
+    color: #BFA181;
+}
+
+h5, h6 {
+    color: #178582;
+}
+
+.material-symbols-outlined {
+    color: var(--azrakFetah);
+    position: absolute;
+    bottom: 0px;
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 300,
+    'GRAD' 0,
+    'opsz' 24;
+}
+
+.clink {
+    position: relative;
+    color:#178582 !important;
+}
+
+.clink:hover, .clink:active, .clink:focus {
+    color:#178582 !important;
+    text-decoration-color: var(--azrakFetah) !important;
+}
+
+td, th {
+    text-align: center;
+}
+
+thead>tr {
+    --bs-table-color: #bfa181;
+}
+
+tr {
+    --bs-table-bg: #061A26;
+    --bs-table-color: white;
+    border-bottom-color: #BFA181;
+
+}
+
+tbody>tr:nth-child(odd) {
+    --bs-table-bg: #178582;
+}
+
+
+.status {
+    border-radius: 5%;
+    border-color: green;
+    border-style: solid;
+    border-width: 1px;
+    color: green;
+    font-size: large;   
+}
+
+.ptags {
+    font-size: large;
+    color: var(--azrakFetah);
+}
+
+.tag {
+    border-style: solid;
+    border-width: 1px;
+    border-color: white;
+    color: white;
+    font-size: medium;
+    font-weight: 70;
+}
+
+.clock {
+    font-size: 60px;
+    color: white;
+}
+
+.label {
+    font-size: 10px;
+    
+}
+
+.description {
+    height: 10%;
+}
+
+
+
+.hint {
+    color: white;
+    font-size: large;
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--or);
+    margin: 2%;
+    padding: 3%;
+    text-align: center;
+    background-color: var(--gris);
+}
+
+.hint.closed:hover {
+    background-color: var(--azrakFetah);
+    cursor: pointer;
+    user-select: none;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.form-control, .form-control:focus {
+    border-color: var(--or);
+    border-radius: 0;
+    color: white;
+    background-color: var(--gris);
+}
+
+
+.input {
+    border-color: var(--or);
+    border-radius: 0;
+    color: white;
+    background-color: var(--gris);
+}
+
+.input:hover, .input:focus {
+    border-color: var(--or);
+    border-radius: 0;
+    color: white;
+    background-color: var(--azrakFetah);
+}
+
+.input:active, .input:active:hover {
+    background-color: var(--azrak);
+    border-color: white;
+    color: white;
+    border-radius: 0;
+}
