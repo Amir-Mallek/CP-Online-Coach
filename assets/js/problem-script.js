@@ -133,7 +133,7 @@ hintContainer.addEventListener('click', (event) => {
 
 //adding an attempt
 
-const langs = ['C++', 'Java', 'Python', 'Ruby'];
+const langs = ['C++', 'Java', 'Python', 'Java Script'];
 
 const verdicts = [
     'AC', 
@@ -152,14 +152,14 @@ const verdicts = [
     'Time Limit Exceeded', 
     'Memory Limit Exceeded'];*/
 
-const verdictColors = [
-    'green',
-    'red',
-    'yellow',
-    'orange',
-    'blue',
-    'purple'
-];
+const verdictColors = {
+    'AC': 'green',
+    'WA': 'red',
+    'CE': 'yellow',
+    'RTE': 'orange',
+    'TLE': 'blue',
+    'MLE': 'purple'
+};
 
 function padZero(value) {
     return (value < 10) ? '0' + value : value;
@@ -176,19 +176,24 @@ function getCurrentDateTime() {
     return `${year}/${month}/${day}, ${hours}:${minutes}`;
 }
 
-function addAttempt(...args) {
+function addAttempt(newAttempt) {
     const attempt = document.createElement('tr');
     const th = document.createElement('th');
     th.scope = 'row';
     attempt.appendChild(th);
-    th.innerText = args[0];
-    for (let i = 1; i < 6; i++) {
+    th.innerText = newAttempt['nb'];
+
+    for (const [param, value] of Object.entries(newAttempt)) {
+        if (param == 'nb') continue;
         const td = document.createElement('td');
-        td.innerText = args[i];
+        if (param == 'time_spent') td.innerText = getTimeSpent();
+        else if (param == 'hint_count') td.innerText = getHintCount();
+        else td.innerText = value;
         attempt.appendChild(td);
     }
+
     attempt.lastChild.style = 
-        `background-color: ${args[6]};
+        `background-color: ${verdictColors[newAttempt['verdict']]};
         font-weight: bold;`;
     
     attempts.insertBefore(attempt, attempts.firstChild);
@@ -199,13 +204,33 @@ function getTimeSpent() {
     return (timeSpentIn.value == '') ? '-' : timeSpentIn.value;
 }
 
+function getTimeSpentDB() {
+    return (timeSpentIn.value == '') ? -1 : timeSpentIn.value;
+}
+
+async function addAttemptToDB(attempt) {
+    const url = '../testing.php'
+    const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(attempt)
+    });
+    return response.json(); // parses JSON response into native JavaScript objects
+}
+
+
 addAttemptButton.addEventListener('click', () => {
-    const nb = attempts.children.length + 1;
-    const when = getCurrentDateTime();
-    const timeSpent = getTimeSpent();
-    const hintCount = getHintCount();
-    const lang = langs[langIn.value];
-    const verdict = verdicts[verdictIn.value];
-    const verdictColor = verdictColors[verdictIn.value];
-    addAttempt(nb, when, timeSpent, hintCount, lang, verdict, verdictColor);
+    const attempt = {
+        nb: attempts.children.length + 1,
+        when: getCurrentDateTime(),
+        time_spent: getTimeSpentDB(),
+        hint_count: nbOpenHints,
+        lang: langs[langIn.value],
+        verdict: verdicts[verdictIn.value]
+    };
+    addAttempt(attempt);
+    addAttemptToDB(attempt).then(r => {
+        console.log(r);
+    })
 })
+
