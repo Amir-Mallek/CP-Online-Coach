@@ -34,43 +34,13 @@
 <body>
 <div class="table container"></div>
 </body>
-<script>
-    const tasksList =document.querySelector('.table');
 
-    /**
-     * Build a task for the To-Do List
-     *
-     * @param {string} taskContent - The content of the task.
-     * @param {string} problemLink - The link of the problem in case the task is to complete a certain problem.
-     */
-    const buildTask = function(taskContent,problemLink){
-        if(taskContent !== ''){
-            const task=document.createElement("div");
-            task.className=" tr row";
-            task.innerHTML=` <div class="col-1 d-flex align-items-center justify-content-center"><input class="m-0 form-check-input checkbox" type="checkbox" value="" id="flexCheckDefault">
-                         </div>
-                         <div class="col w-100"><label class="form-check-label primary" style="background-color: transparent" for="flexCheckDefault">
-                         <a `+ (problemLink===undefined?'':`href="${problemLink}" style="color:white;text-decoration: none;border-bottom: 2px solid #BFA181;"`) +` >${taskContent}</a>
-                            </label></div>
-                        <div class="col-2 d-flex align-items-center justify-content-end">
-                        <button type="button" class="btn-close" aria-label="Close">
-                        </button></div>`;
-            task.querySelector('button').addEventListener('click',event=>{
-                tasksList.removeChild(task);
-            });
+<script src="../assets/js/ToDoList.js"></script>
 
-            tasksList.appendChild(task);
-            const taskInput=document.querySelector('#taskInput');
-            if(taskInput) {
-                // If it exists, clear its value
-                document.querySelector('#taskInput').value = '';
-            }
-        }
-    };
 
-    buildTask("Solve 2 problems in Game Theory",);
-    buildTask("Learn about BFS");
-    buildTask("Problem Watermelon","oj");
-    buildTask("Participate in DIV2 Codeforces");
-</script>
+
+<!--    buildTask("Solve 2 problems in Game Theory",undefined,false);-->
+<!--    buildTask("Learn about BFS",undefined,true);-->
+<!--    buildTask("Problem Watermelon",undefined,false);-->
+<!--    buildTask("Participate in DIV2 Codeforces",undefined,true);-->
 </html>

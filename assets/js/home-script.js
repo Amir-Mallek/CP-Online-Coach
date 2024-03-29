@@ -22,97 +22,21 @@ function percentageToDegrees(percentage) {
 tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
 tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 
-//badges
-const multipleCardCarousel = document.querySelector("#carouselExampleControls");
-const carouselControlNext = document.querySelector("#carouselExampleControls .carousel-control-next");
-const carouselControlPrev = document.querySelector("#carouselExampleControls .carousel-control-prev");
-const toggleVisibility=function(turnon){
-    if(turnon){
-        carouselControlPrev.classList.remove('visually-hidden');
-        carouselControlNext.classList.remove('visually-hidden');
-    }else{
-        carouselControlPrev.classList.add('visually-hidden');
-        carouselControlNext.classList.add('visually-hidden');
-    }
-}
-multipleCardCarousel.addEventListener('mouseenter',()=>{
-    toggleVisibility(true);
-});
-multipleCardCarousel.addEventListener('mouseleave',()=>{
-    toggleVisibility(false);
-});
-
-if (window.matchMedia("(min-width: 426px)").matches) {
-    const carousel = new bootstrap.Carousel(multipleCardCarousel, {
-        interval: false,
-    });
-
-    const carouselInner = document.querySelector("#carouselExampleControls .carousel-inner");
-
-
-    const carouselWidth = carouselInner.scrollWidth;
-    const cardWidth = document.querySelector("#carouselExampleControls .carousel-item").offsetWidth;
-    let nbBadges = 3;
-    if(window.matchMedia("min-width: 1440px)").matches)
-        nbBadges=5;
-    else if(window.matchMedia("min-width: 1024px)").matches)
-        nbBadges=4;
-
-    let scrollPosition = 0;
-
-    carouselControlNext.addEventListener("click", function () {
-        if (scrollPosition < carouselWidth - cardWidth * nbBadges) {
-            scrollPosition += cardWidth;
-            $(".carousel-inner").animate({ scrollLeft: scrollPosition }, 400);
-
-        }
-    });
-
-    carouselControlPrev.addEventListener("click", function () {
-        if (scrollPosition > 0) {
-            scrollPosition -= cardWidth;
-            $(".carousel-inner").animate({ scrollLeft: scrollPosition }, 400);
-
-        }
-    });
-} else {
-    multipleCardCarousel.classList.add("slide");
-}
-
-
-
 //To-Do List
 const addButton=document.querySelector('#addButton');
 const taskInput=document.querySelector('#taskInput');
 addButton.addEventListener('click',()=>{
-    buildTask(taskInput.value);
+    if(taskInput.value)
+        addTask(taskInput.value,undefined,  false );
 });
 
 const skillsChart = document.querySelector('#skillsChart');
 const skillsData = {
-    labels: [
-        'Number Theory',
-        'Data Structure',
-        'Graph Theory',
-        'Strings',
-        'Combinatorics',
-        'Game Theory'
-    ],
-    datasets: //[{
-        // label: 'Skills',
-        // data: [33,25,15,9,11,40],
-        // fill: true,
-        // backgroundColor: 'rgba(255, 99, 132, 0.2)',
-        // borderColor: 'rgb(255, 99, 132)',
-        // color:'rgb(255,255,255)',
-        // pointBackgroundColor: 'rgb(255, 99, 132)',
-        // pointBorderColor: '#fff',
-        // pointHoverBackgroundColor: '#fff',
-        // pointHoverBorderColor: 'rgb(255, 99, 132)'}]
-    //},
+    labels: skillsLabels,
+    datasets:
     [{
         label: 'Skills',
-        data: [15, 20, 10, 25, 5, 25],
+        data: skillsDataset,
         fill: true,
         backgroundColor: 'rgba(23,133,130,0.2)',
         borderColor: '#178582',
@@ -158,7 +82,6 @@ new Chart(skillsChart, {
 });
 
 const verdictsChart = document.querySelector('#verdictsChart');
-const verdictsDataset=[214, 150, 9,1,6,8];
 const verdictsData = {
     labels: [
         'AC',
@@ -171,17 +94,17 @@ const verdictsData = {
     datasets: [{
         data: verdictsDataset,
         backgroundColor: [
-            '#22BABB',
-            '#D6D58E',
+            '#04BF8A',
+            '#F24405',
             '#9FC131',
             '#FA7F08',
-            '#04BF8A',
-            '#F24405'
+            '#22BABB',
+            '#D6D58E'
         ],
         hoverOffset: 4
     }]
 };
-const displayLimit=verdictsDataset.reduce((total, value) => total + value, 0) * 0.1;
+const displayLimit=verdictsDataset.reduce((total, value) => total + value, 0) * 0.09;
 new Chart(verdictsChart, {
     type: 'doughnut',
     data: verdictsData,
