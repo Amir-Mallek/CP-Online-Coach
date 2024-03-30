@@ -1,34 +1,77 @@
 <?php
-    
+if (!isset($_GET['problem_id'])) {
+    header('location: levels.php');
+    exit;
+}
+
+require_once '../includes/userChecker.php';
+require_once '../auto_load.php';
+
+$problem_id = $_GET['problem_id'];
+
+$attempts_table = new Attempts_Table();
+$problems_table = new Problems_Table();
+$hints_table = new Hints_Table();
+$open_hints_table = new Open_Hints_Table();
+
+$attempts = $attempts_table->get_attempts($problem_id, $user_id);
+$problem = $problems_table->get_problem($problem_id);
+$hints = $hints_table->get_hints($problem_id);
+$nb_hints = count($hints);
+$open_hints = $open_hints_table->get_open_hints($problem_id, $user_id);
+$nb_open_hints = count($open_hints);
+
+$open_ids = [];
+foreach ($open_hints as $open_hint)
+    $open_ids[] = $open_hint->hint_id;
+
+$verdict_color = [
+    'AC' => 'green',
+    'WA' => 'red',
+    'CE' => 'yellow',
+    'RTE' => 'orange',
+    'TLE' => 'blue',
+    'MLE' => 'purple'];
+$string_tags = $problem->tags;
+$tags = explode(',', $string_tags);
+$attempts = array_reverse($attempts);
+
+function is_open($hint) {
+    global $open_ids;
+    return in_array($hint->id, $open_ids);
+}
+
 ?>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Problem Page</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="../assets/css/problem-style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" />
 
 </head>
-<body>
-<script src="js/bootstrap.bundle.js"></script>
+<body class="">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
 <div class="container mb-5">
     <div class="row mt-5">
         <div class="col-2"></div>
         <div class="col-8">
-            <h1 class="display-1">Watermelon <span class="status solved">Solved</span></h1>
-            <h4><a href="https://codeforces.com/problemset/problem/4/A" target="_blank"
+            <h1 class="display-1"><?= $problem->title ?></h1>
+            <h4><a href="<?= $problem->link ?>" target="_blank"
                    class="link-light link-underline-opacity-25 link-underline-opacity-100-hover clink">
-                   Codeforces 4A
+                    <?= $problem->platform." ".$problem->id_platform  ?>
                    <span class="material-symbols-outlined">link</span>
                 </a>
             </h4>
             
             <h4 class="mt-2 ptags">
                 Problem Tags:
-                <span class="tag rounded px-2 pb-1">Binary search</span>
-                <span class="tag rounded px-2 pb-1">DFS and similar</span>
+                <?php foreach ($tags as $tag): ?>
+                    <span class="tag rounded px-2 pb-1"><?= $tag ?></span>
+                <?php endforeach; ?>
             </h4>
             
             <div class="timer-div mt-4 container">
@@ -79,9 +122,26 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php foreach ($attempts as $attempt):
+                            $time = $attempt->time_spent_min;
+                            $time_spent = ($time != -1) ? $time : '-';
+                            try {
+                                $when = new DateTime($attempt->attempt_time);
+                            } catch (Exception $e) {}
+                            ?>
+                            <tr>
+                                <th scope="row"><?= $attempt->attempt_number ?></th>
+                                <td><?= $when->format('Y/m/d, H:i'); ?></td>
+                                <td><?= $time_spent ?></td>
+                                <td><?= $attempt->nb_hints ?>/<?= $nb_hints ?></td>
+                                <td><?= $attempt->language ?></td>
+                                <td style="background-color: <?= $verdict_color[$attempt->verdict] ?>; font-weight: bold;">
+                                    <?= $attempt->verdict ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
-                
                 <div class="container add-attempt">
                     <div class="row text-center align-items-end mb-5">
                         <div class="col-3" style="color: white;">
@@ -113,17 +173,23 @@
                         </div>
                     </div>
                 </div>
-                
             </div>
-
-            <div class="hints">
-                <h2>Hints:</h2>
-            </div>
-
+            <?php if ($nb_hints > 0):?>
+                <div class="hints">
+                    <h2>Hints (<?= $nb_open_hints ?>/<?= $nb_hints ?>):</h2>
+                    <?php foreach ($hints as $hint): ?>
+                        <div class="hint <?= (is_open($hint) ? '' : 'closed').' h'.$hint->id ?>">
+                            <?= is_open($hint) ? $hint->description : 'View Hint' ?>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
         </div>
         <div class="col-2"></div>
     </div>
 </div>
 <script src="../assets/js/problem-script.js"></script>
+<p class="session-id" style="display: none;"><?= session_id() ?></p>
+<p class="problem-id" style="display: none;"><?= $problem_id ?></p>
 </body>
 </html>

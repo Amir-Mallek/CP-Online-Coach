@@ -77,14 +77,22 @@ resetButton.addEventListener('click', () => {
 const hintContainer = document.querySelector('.hints');
 const hintHeader = document.querySelector('.hints>h2');
 
-let nbOpenHints = 0;
-const nbHints = 2;
-const hints = ["Don't forget long long xD!", "Think Greedy."];
-const hintIsOpen = [false, false];
+const nbHints = (hintContainer) ? hintContainer.childElementCount-1 : -1;
+let nbOpenHints = getNbOpenHints();
+
+function getNbOpenHints() {
+    if (nbHints == 0) return -1;
+    let res = 0;
+    for (let i = 1; i < hintContainer.childElementCount; i++) {
+        if (hintContainer.children[i].classList.length == 2)
+            res++;
+    }
+    return res;
+}
 
 function getHintCount() {
-    if (nbHints == 0) return '-';
-    return `${nbOpenHints}/${nbHints}`;
+    if (nbHints > 0) return `${nbOpenHints}/${nbHints}`;
+    return '-';
 }
 
 function updateHintHeader() {
@@ -95,45 +103,47 @@ function updateHintHeader() {
     }
 }
 
-function openHint(id) {
+function openHint(hint, description) {
     nbOpenHints++;
-    const hint = hintContainer.children[id+1];
     hint.classList.remove('closed');
-    hint.innerText = hints[id];
+    hint.innerText = description;
     updateHintHeader();
 }
-
-function createHint() {
-    const hint = document.createElement('div');
-    hint.classList.add('hint');
-    hint.classList.add('closed');
-    hint.innerText = 'View Hint';
-    hintContainer.appendChild(hint);
-}
-
-
-for (let i = 0; i < nbHints; i++) {
-    createHint(); 
-    if (hintIsOpen[i]) openHint(i);   
-}
-
-updateHintHeader();
 
 function isClosedHint(candidate) {
     return candidate.classList.contains('closed');
 }
 
-hintContainer.addEventListener('click', (event) => {
+async function requestHintDescription(hint_id) {
+    const hint_lookup = {
+        'session_id': getSessionID(),
+        'hint_id': hint_id
+    };
+    const url = '../pages/open_hint.php';
+    const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(hint_lookup)
+    });
+    return response.json();
+}
+
+function getHintID(element) {
+   return parseInt(element.classList[2].slice(1));
+}
+
+hintContainer.addEventListener('click', async (event) => {
     const candidate = event.target;
     if (!isClosedHint(candidate)) return;
-    const hintId = Array.from(hintContainer.children).indexOf(candidate) - 1;
-    openHint(hintId);
+    const hintID = getHintID(candidate);
+    const hintDescription = await  requestHintDescription(hintID);
+    openHint(candidate, hintDescription);
 });
 
 
 //adding an attempt
 
-const langs = ['C++', 'Java', 'Python', 'Ruby'];
+const langs = ['C++', 'Java', 'Python', 'Java Script'];
 
 const verdicts = [
     'AC', 
@@ -144,22 +154,14 @@ const verdicts = [
     'MLE'
 ];
 
-/*const verdicts = [
-    'Accepted', 
-    'Wrong Answer', 
-    'Compilation Error', 
-    'Run Time Error', 
-    'Time Limit Exceeded', 
-    'Memory Limit Exceeded'];*/
-
-const verdictColors = [
-    'green',
-    'red',
-    'yellow',
-    'orange',
-    'blue',
-    'purple'
-];
+const verdictColors = {
+    'AC': 'green',
+    'WA': 'red',
+    'CE': 'yellow',
+    'RTE': 'orange',
+    'TLE': 'blue',
+    'MLE': 'purple'
+};
 
 function padZero(value) {
     return (value < 10) ? '0' + value : value;
@@ -176,36 +178,91 @@ function getCurrentDateTime() {
     return `${year}/${month}/${day}, ${hours}:${minutes}`;
 }
 
-function addAttempt(...args) {
-    const attempt = document.createElement('tr');
-    const th = document.createElement('th');
-    th.scope = 'row';
-    attempt.appendChild(th);
-    th.innerText = args[0];
-    for (let i = 1; i < 6; i++) {
-        const td = document.createElement('td');
-        td.innerText = args[i];
-        attempt.appendChild(td);
-    }
-    attempt.lastChild.style = 
-        `background-color: ${args[6]};
-        font-weight: bold;`;
-    
-    attempts.insertBefore(attempt, attempts.firstChild);
-    timeSpentIn.value = '';
-}
-
 function getTimeSpent() {
     return (timeSpentIn.value == '') ? '-' : timeSpentIn.value;
 }
 
+function getTimeSpentDB() {
+    return (timeSpentIn.value == '') ? -1 : timeSpentIn.value;
+}
+
+async function addAttemptToDB() {
+    const attempt = {
+        session_id: getSessionID(),
+        problem_id: getProblemID(),
+        attempt_number: getAttemptCount(),
+        attempt_time: getCurrentDateTime(),
+        time_spent_min: getTimeSpentDB(),
+        nb_hints: nbOpenHints,
+        language: getAttemptLang(),
+        verdict: verdicts[verdictIn.value]
+    };
+    const url = '../pages/add_attempt.php';
+    const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(attempt)
+    });
+    return response.json(); // parses JSON response into native JavaScript objects
+}
+
+function getSessionID() {
+    return document.querySelector('.session-id').innerText;
+}
+
+function getProblemID() {
+    return document.querySelector('.problem-id').innerText;
+}
+
+function getAttemptCount() {
+    return attempts.childElementCount+1;
+}
+
+function getAttemptLang() {
+    return langs[langIn.value];
+}
+
+function getAttemptVerdict() {
+    return verdicts[verdictIn.value];
+}
+function addAttempt() {
+    const attempt = document.createElement('tr');
+    const th = document.createElement('th');
+    th.scope = 'row';
+    attempt.appendChild(th);
+    th.innerText = getAttemptCount();
+
+    let td = document.createElement('td');
+    td.innerText = getCurrentDateTime();
+    attempt.appendChild(td);
+
+    td = document.createElement('td');
+    td.innerText = getTimeSpent();
+    attempt.appendChild(td);
+
+    td = document.createElement('td');
+    td.innerText = getHintCount();
+    attempt.appendChild(td);
+
+    td = document.createElement('td');
+    td.innerText = getAttemptLang();
+    attempt.appendChild(td);
+
+    td = document.createElement('td');
+    td.innerText = getAttemptVerdict();
+    attempt.appendChild(td);
+
+    attempt.lastChild.style =
+        `background-color: ${verdictColors[getAttemptVerdict()]};
+        font-weight: bold;`;
+
+    attempts.insertBefore(attempt, attempts.firstChild);
+    timeSpentIn.value = '';
+}
 addAttemptButton.addEventListener('click', () => {
-    const nb = attempts.children.length + 1;
-    const when = getCurrentDateTime();
-    const timeSpent = getTimeSpent();
-    const hintCount = getHintCount();
-    const lang = langs[langIn.value];
-    const verdict = verdicts[verdictIn.value];
-    const verdictColor = verdictColors[verdictIn.value];
-    addAttempt(nb, when, timeSpent, hintCount, lang, verdict, verdictColor);
+    addAttemptToDB().then(r => {
+        console.log(r);
+    });
+    addAttempt();
 })
+

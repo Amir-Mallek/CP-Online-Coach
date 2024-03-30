@@ -58,15 +58,6 @@ tbody>tr:nth-child(odd) {
 }
 
 
-.status {
-    border-radius: 5%;
-    border-color: green;
-    border-style: solid;
-    border-width: 1px;
-    color: green;
-    font-size: large;   
-}
-
 .ptags {
     font-size: large;
     color: var(--azrakFetah);
