@@ -13,7 +13,7 @@ $status_data = $status_table->get_problems_status($level_id, $user_id);
 $emoji = ['✅', '❌', '📆', '➖'];
 $front_status = [];
 foreach ($status_data as $stat) {
-    $front_status[$stat->problem_id] = $emoji[$stat->description];
+    $front_status[$stat->problem_id] = $emoji[$stat->code];
 }
 foreach ($problems as $problem) {
     if (!array_key_exists($problem->id, $front_status)) {

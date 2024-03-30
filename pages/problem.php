@@ -12,9 +12,19 @@ $problem_id = $_GET['problem_id'];
 $attempts_table = new Attempts_Table();
 $problems_table = new Problems_Table();
 $hints_table = new Hints_Table();
+$open_hints_table = new Open_Hints_Table();
+
 $attempts = $attempts_table->get_attempts($problem_id, $user_id);
 $problem = $problems_table->get_problem($problem_id);
-$nb_hints = $hints_table->get_nb_hints($problem_id);
+$hints = $hints_table->get_hints($problem_id);
+$nb_hints = count($hints);
+$open_hints = $open_hints_table->get_open_hints($problem_id, $user_id);
+$nb_open_hints = count($open_hints);
+
+$open_ids = [];
+foreach ($open_hints as $open_hint)
+    $open_ids[] = $open_hint->hint_id;
+
 $verdict_color = [
     'AC' => 'green',
     'WA' => 'red',
@@ -24,6 +34,12 @@ $verdict_color = [
     'MLE' => 'purple'];
 $string_tags = $problem->tags;
 $tags = explode(',', $string_tags);
+$attempts = array_reverse($attempts);
+
+function is_open($hint) {
+    global $open_ids;
+    return in_array($hint->id, $open_ids);
+}
 
 ?>
 <html lang="en">
@@ -36,10 +52,9 @@ $tags = explode(',', $string_tags);
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" />
 
 </head>
-<body>
+<body class="">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-<?= $nb_hints ?>
 <div class="container mb-5">
     <div class="row mt-5">
         <div class="col-2"></div>
@@ -109,7 +124,7 @@ $tags = explode(',', $string_tags);
                     <tbody>
                         <?php foreach ($attempts as $attempt):
                             $time = $attempt->time_spent_min;
-                            $time_spent = (isset($time)) ? $time : '-';
+                            $time_spent = ($time != -1) ? $time : '-';
                             try {
                                 $when = new DateTime($attempt->attempt_time);
                             } catch (Exception $e) {}
@@ -159,15 +174,22 @@ $tags = explode(',', $string_tags);
                     </div>
                 </div>
             </div>
-
-            <div class="hints">
-                <h2>Hints:</h2>
-            </div>
-
+            <?php if ($nb_hints > 0):?>
+                <div class="hints">
+                    <h2>Hints (<?= $nb_open_hints ?>/<?= $nb_hints ?>):</h2>
+                    <?php foreach ($hints as $hint): ?>
+                        <div class="hint <?= (is_open($hint) ? '' : 'closed').' h'.$hint->id ?>">
+                            <?= is_open($hint) ? $hint->description : 'View Hint' ?>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
         </div>
         <div class="col-2"></div>
     </div>
 </div>
 <script src="../assets/js/problem-script.js"></script>
+<p class="session-id" style="display: none;"><?= session_id() ?></p>
+<p class="problem-id" style="display: none;"><?= $problem_id ?></p>
 </body>
 </html>
