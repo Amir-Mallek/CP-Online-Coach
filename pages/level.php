@@ -2,13 +2,16 @@
 //$level_id = $_GET['level_id'];
 $level_id = 1;
 
+
 require_once '../includes/userChecker.php';
 require_once '../auto_load.php';
 
 $status_table = new Status_Table();
 $problems_table = new Problems_Table();
+$resources_table = new Resources_Table();
 $problems = $problems_table->get_problems($level_id);
 $status_data = $status_table->get_problems_status($level_id, $user_id);
+$resources = $resources_table->get_resources($level_id);
 
 $emoji = ['✅', '❌', '📆', '➖'];
 $front_status = [];
