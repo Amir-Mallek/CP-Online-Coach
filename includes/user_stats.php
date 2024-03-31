@@ -1,20 +1,11 @@
 <?php
-session_start();
 
-if (isset($_SESSION['user_id'])) {
-    $userId = $_SESSION['user_id'];
-    // Use user information as needed
-} else {
-    header("Location: login.php");
-    exit();
-}
 
-include_once ($_SERVER['DOCUMENT_ROOT'].'/includes/DBConnection.php');
 $db=DBConnection::getInstance();
 
 //languages section
 $req = $db->prepare("select * from getLanguagesSection (:user_id);");
-$req->execute(array('user_id' => $userId));
+$req->execute(array('user_id' => $user_id));
 /**
  * [language,count]
  */
@@ -29,7 +20,7 @@ function buildLanguagesSection(){
 
 //skills section
 $req = $db->prepare("select * from getskillssection (:user_id);");
-$req->execute(array('user_id' => $userId));
+$req->execute(array('user_id' => $user_id));
 /**
  * [topic,count,overall]
  */
@@ -65,7 +56,7 @@ function buildSkillsSection(){
 
 //difficulties/levels section
 $req = $db->prepare("select * from getDifficultySection(:user_id);");
-$req->execute(array('user_id' => $userId));
+$req->execute(array('user_id' => $user_id));
 /**
  * [difficulty,count,overall]
  */
@@ -109,7 +100,7 @@ function buildSolvedProblemsSection(){
 
 //verdicts section
 $req = $db->prepare("select * from getVerdictsSection(:user_id);");
-$req->execute(array('user_id' => $userId));
+$req->execute(array('user_id' => $user_id));
 /**
  * [verdict,count]
  */

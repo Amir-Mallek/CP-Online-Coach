@@ -1,5 +1,3 @@
-
-
 const progressBars=document.querySelectorAll(".progress");
 progressBars.forEach(progress=>{
     const value = progress.getAttribute('data-value');
@@ -34,17 +32,17 @@ const skillsChart = document.querySelector('#skillsChart');
 const skillsData = {
     labels: skillsLabels,
     datasets:
-    [{
-        label: 'Skills',
-        data: skillsDataset,
-        fill: true,
-        backgroundColor: 'rgba(23,133,130,0.2)',
-        borderColor: '#178582',
-        pointBackgroundColor: '#178582',
-        pointBorderColor: '#fff',
-        pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: '#178582'
-    }]
+        [{
+            label: 'Skills',
+            data: skillsDataset,
+            fill: true,
+            backgroundColor: 'rgba(23,133,130,0.2)',
+            borderColor: '#178582',
+            pointBackgroundColor: '#178582',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: '#178582'
+        }]
 };
 new Chart(skillsChart, {
     type: 'radar',

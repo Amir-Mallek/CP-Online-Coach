@@ -26,8 +26,9 @@
         .tr:nth-child(odd) {
             background-color: #178582;
         }
-        .custom-btn-close{--bs-btn-close-color: #000;
-            --bs-btn-close-bg: url("/assets/img/close_btn.svg");
+        .custom-btn-close{
+            --bs-btn-close-color: #000;
+            --bs-btn-close-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' fill='white' class='bi bi-x-lg' viewBox='0 0 16 16'%3E%3Cpath d='M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z'/%3E%3C/svg%3E");
             --bs-btn-close-opacity: 0.5;
             --bs-btn-close-hover-opacity: 0.75;
             --bs-btn-close-focus-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);

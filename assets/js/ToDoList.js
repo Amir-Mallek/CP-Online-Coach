@@ -43,6 +43,7 @@ const buildTask = function(id, taskContent, problemLink, checked) {
 
 // Load tasks from cookies
 function loadTodoListFromCookies() {
+
     const cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)todoList\s*\=\s*([^;]*).*$)|^.*$/, "$1");
     if (cookieValue) {
         const decodedCookieValue = decodeURIComponent(cookieValue);
@@ -65,6 +66,7 @@ function loadTodoListFromCookies() {
 function saveTodoListToCookies() {
     if(todolistBadge)
         todolistBadge.textContent=tasks.size;
+    console.log(tasks);
     const todoListJSON = JSON.stringify([...tasks]); // Convert Map to array of key-value pairs
     document.cookie = 'todoList=' + encodeURIComponent(todoListJSON);
 }
@@ -80,6 +82,7 @@ const addTask = (taskContent, problemLink, checked) => {
 // Load tasks from cookies and build them
 let nextId =0; // Set nextId to the size of the current tasks
 const todolistBadge=document.querySelector('#todolist-badge');
+
 let tasks = loadTodoListFromCookies();
 
 tasks.forEach((value, key) => {

@@ -39,8 +39,8 @@ hr{
     color:#178582;
 }
 ul {
-     list-style: none;
- }
+    list-style: none;
+}
 ul li::before {
     content: "•";
     color: #178582;
@@ -189,8 +189,6 @@ ul li::before {
 #upcoming-contests .card:hover {
     transform: scale(1.05); /* Adjust the scaling factor as needed */
     transition: transform 0.6s ease;
-    /
+
 }
-
-
 

@@ -1,5 +1,7 @@
 <?php
-include "api/user_stats.php";
+require_once 'includes/userChecker.php';
+require_once 'auto_load.php';
+echo $_SERVER['DOCUMENT_ROOT'];
 ?>
 
 <!DOCTYPE html>
@@ -8,16 +10,20 @@ include "api/user_stats.php";
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Home</title>
-    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <?php
+    link_bootstrap_style();
+    link_bootstrap_script();
+    ?>
     <link href="assets/css/home-style.css" rel="stylesheet">
 
 </head>
 <body>
 
 <!-- navbar -->
-<?php include_once 'includes/navbar.php'; ?>
+<?php require_navbar();
+include "includes/user_stats.php";
+?>
+
 <div id="main-container">
 <div  class="container mx-auto py-4">
     <div class="row gap-3 justify-content-center">
@@ -170,5 +176,4 @@ include "api/user_stats.php";
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 
 <script src="assets/js/home-script.js"></script>
-
 </html>
