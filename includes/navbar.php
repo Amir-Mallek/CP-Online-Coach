@@ -98,4 +98,3 @@ if(basename($_SERVER['PHP_SELF']) != 'index.php') {
     let tooltipTriggerList = container.querySelectorAll('[data-bs-toggle="tooltip"]');
     let tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 </script>
-

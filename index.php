@@ -176,4 +176,4 @@ include "includes/user_stats.php";
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 
 <script src="assets/js/home-script.js"></script>
-</html>
+<html>
