@@ -1,6 +1,6 @@
 
     <style>
-        button{
+        nav button{
             background-color: #262E33;
             color: #BFA181;
             width: 56px;
@@ -45,7 +45,7 @@
             opacity: var(--bs-btn-close-opacity);
         }
     </style>
-
+<nav>
 
 <div id="navbar-container" class="vstack gap-2 ms-3 me-2 mt-3 position-fixed top-0 end-0">
     <button id="index" class="rounded-pill mb-2" data-bs-toggle="tooltip" data-bs-placement="left" title="Home">
@@ -83,7 +83,7 @@ if(basename($_SERVER['PHP_SELF']) != 'index.php') {
     echo '</div></div>';
 }
 ?>
-    
+</nav>
 <!--<script crossorigin="anonymous"-->
 <!--        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"-->
 <!--        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>-->

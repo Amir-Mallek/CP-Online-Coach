@@ -1,7 +1,6 @@
 <?php
 require_once 'includes/userChecker.php';
 require_once 'auto_load.php';
-echo $_SERVER['DOCUMENT_ROOT'];
 ?>
 
 <!DOCTYPE html>
@@ -34,32 +33,35 @@ include "includes/user_stats.php";
                     <img alt="profile picture" class="img-fluid rounded p-1" src="assets/img/profiles/profile_picture.png">
                 </div>
                 <div class="col-md-6 px-0 d-flex flex-column justify-content-center text-start ">
-                    <p class="h-6 primary mb-2 mt-3 fw-bold">Cyber Phantom</p>
-                    <p class="h-6 primary mb-3 mt-2 fw-semibold"><small class="secondary fw-normal">Rank</small> 300502</p>
+                    <p class="h-6 primary mb-2 mt-3 fw-bold"><?=$user_data->username?></p>
+<!--                    <p class="h-6 primary mb-3 mt-2 fw-semibold"><small class="secondary fw-normal">Rank</small> 300502</p>-->
                 </div>
             </div>
-            <div class="row">
-            <a class="icon-link secondary text-decoration-none" href="https://codeforces.com/profile/CMiner">
-                <svg aria-hidden="true" class="bi" height="24" viewBox="0 0 24 24" width="24">
-                    <g id="SVGRepo_bgCarrier" stroke-width="0"/>
-                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
-                    <g id="SVGRepo_iconCarrier">
-                        <path d="M4.5 7.5A1.5 1.5 0 0 1 6 9v10.5A1.5 1.5 0 0 1 4.5 21h-3C.673 21 0 20.328 0 19.5V9c0-.828.673-1.5 1.5-1.5h3zm9-4.5A1.5 1.5 0 0 1 15 4.5v15a1.5 1.5 0 0 1-1.5 1.5h-3c-.827 0-1.5-.672-1.5-1.5v-15c0-.828.673-1.5 1.5-1.5h3zm9 7.5A1.5 1.5 0 0 1 24 12v7.5a1.5 1.5 0 0 1-1.5 1.5h-3a1.5 1.5 0 0 1-1.5-1.5V12a1.5 1.5 0 0 1 1.5-1.5h3z"/>
-                    </g>
-                </svg>
-                CMiner
-            </a>
-            <a class="icon-link secondary text-decoration-none"
-               href="https://www.linkedin.com/in/mouhib-bahri-2b2a182b6/">
-                <svg aria-hidden="true" class="bi" height="24" viewBox="0 0 72 72" width="24">
-                    <g>
-                        <path d="M8,72 L64,72 C68.418278,72 72,68.418278 72,64 L72,8 C72,3.581722 68.418278,-8.11624501e-16 64,0 L8,0 C3.581722,8.11624501e-16 -5.41083001e-16,3.581722 0,8 L0,64 C5.41083001e-16,68.418278 3.581722,72 8,72 Z"/>
-                        <path d="M62,62 L51.315625,62 L51.315625,43.8021149 C51.315625,38.8127542 49.4197917,36.0245323 45.4707031,36.0245323 C41.1746094,36.0245323 38.9300781,38.9261103 38.9300781,43.8021149 L38.9300781,62 L28.6333333,62 L28.6333333,27.3333333 L38.9300781,27.3333333 L38.9300781,32.0029283 C38.9300781,32.0029283 42.0260417,26.2742151 49.3825521,26.2742151 C56.7356771,26.2742151 62,30.7656705 62,40.051212 L62,62 Z M16.349349,22.7940133 C12.8420573,22.7940133 10,19.9296567 10,16.3970067 C10,12.8643566 12.8420573,10 16.349349,10 C19.8566406,10 22.6970052,12.8643566 22.6970052,16.3970067 C22.6970052,19.9296567 19.8566406,22.7940133 16.349349,22.7940133 Z M11.0325521,62 L21.769401,62 L21.769401,27.3333333 L11.0325521,27.3333333 L11.0325521,62 Z"
-                              fill="#262E33"/>
-                    </g>
-                </svg>
-                Mouhib Bahri
-            </a>
+            <div class="row gap-1">
+                <?php buildUserSection();?>
+<!--            <a class="icon-link secondary text-decoration-none" href="https://codeforces.com/profile/CMiner">-->
+<!--                    <i class="bi bi-github h-auto"></i>-->
+<!--                CMiner-->
+<!--            </a>-->
+<!--            <a class="icon-link secondary text-decoration-none"-->
+<!--               href="https://www.linkedin.com/in/mouhib-bahri-2b2a182b6/">-->
+<!--                <i class="bi bi-linkedin h-auto"></i>-->
+<!--                Mouhib Bahri-->
+<!--            </a>-->
+<!--                <a class="icon-link secondary text-decoration-none"-->
+<!--                   href="https://www.linkedin.com/in/mouhib-bahri-2b2a182b6/">-->
+<!--                    -->
+<!--                    Mouhib Bahri-->
+<!--                </a>-->
+<!---->
+<!--                <a class="icon-link secondary text-decoration-none"-->
+<!--                   href="https://www.linkedin.com/in/mouhib-bahri-2b2a182b6/">-->
+<!--                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="bi" width="1em" height="1em" viewBox="0 0 24 24">-->
+<!--                        <path  d="M4.5 7.5A1.5 1.5 0 0 1 6 9v10.5A1.5 1.5 0 0 1 4.5 21h-3C.673 21 0 20.328 0 19.5V9c0-.828.673-1.5 1.5-1.5zm9-4.5A1.5 1.5 0 0 1 15 4.5v15a1.5 1.5 0 0 1-1.5 1.5h-3c-.827 0-1.5-.672-1.5-1.5v-15c0-.828.673-1.5 1.5-1.5zm9 7.5A1.5 1.5 0 0 1 24 12v7.5a1.5 1.5 0 0 1-1.5 1.5h-3a1.5 1.5 0 0 1-1.5-1.5V12a1.5 1.5 0 0 1 1.5-1.5z" />-->
+<!--                    </svg>-->
+<!--                    Mouhib Bahri-->
+<!--                </a>-->
+
             </div>
             <hr/>
             <!-- languages section -->
@@ -118,13 +120,9 @@ include "includes/user_stats.php";
                 <!-- badges card -->
                 <div class="col custom-card py-3 position-relative">
                     <p class="secondary mb-0" style="font-size: small">Badges</p>
-                    <p class="primary fs-5 mb-1 fw-bold">3</p>
+                    <p id="badges-number" class="primary fs-5 mb-1 fw-bold"></p>
                     <div id="badges" class="overflow-x-auto flex-nowrap row px-1 mx-1 py-1 position-absolute mb-3 bottom-0 start-0 end-0">
-                        <img src="assets/img/badges/lightinghawk.png" class="col h-50 mb-2 w-50 " alt="first solve" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lighting Hawk: First Solve" >
-                        <img src="assets/img/badges/solveunder5.png" class="col h-50 mb-2 w-50" alt="solve under 5mins" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Speed: Solve Under 5 mins">
-                        <img src="assets/img/badges/nightowl.png" class="col h-50 w-50 mb-2" alt="solve 5 problems between midnight and 5am" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Night Owl: Solve 5 Problems Between Midnight and 5 am">
-                        <img src="assets/img/badges/triathonphoenix.png" class="col h-50 mb-2 w-50 opacity-50" alt="Participate in 3 contests within a week" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Triathlon Phoenix: Participate in 3 Contests Within a Week">
-                        <img src="assets/img/badges/lonewolf.png" class="col h-50 w-50 mb-2 opacity-50 " alt="rank among top 10" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lone Wolf: Rank Among Top 10">
+                        <?php buildBadgesSection();?>
                     </div>
                 </div>
             </div>

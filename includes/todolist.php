@@ -114,8 +114,7 @@
     const todolistBadge=document.querySelector('#todolist-badge');
 
     let tasks = loadTodoListFromCookies();
-    console.log(todolistBadge);
-    console.log(tasks);
+
     tasks.forEach((value, key) => {
         buildTask(key, value.taskContent, value.problemLink, value.checked);
     });
