@@ -36,7 +36,6 @@ h6 {
 }
 .progress-bar {
     background-color: #BFA181;
-    width: 37.5%;
 }
 
 .progress {
@@ -51,4 +50,9 @@ td>a {
 
 td>a:hover {
     color: var(--or);
+}
+
+.summary {
+    color: white;
+    font-size: large;
 }

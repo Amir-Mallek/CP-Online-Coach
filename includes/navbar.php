@@ -1,38 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+    button{
+        background-color: #262E33;
+        color: #BFA181;
+        width: 56px;
+        height: 56px;
+    }
 
-    <style>
-        button{
-            background-color: #262E33;
-            color: #BFA181;
-            width: 56px;
-            height: 56px;
-        }
+    .primary{
+        color: white !important;
+    }
+    i{
+        font-size: 18px;
+    }
+    #navbar-container{
+        width: 56px;
+        z-index: 2;
+    }
+    .tr {
+        background-color: transparent;
+        color: white;
+        border-bottom: 1px solid #BFA181 ;
+    }
 
-        .primary{
-            color: white !important;
-        }
-        i{
-            font-size: 18px;
-        }
-        #navbar-container{
-            width: 56px;
-            z-index: 2;
-        }
-        .tr {
-            background-color: transparent;
-            color: white;
-            border-bottom: 1px solid #BFA181 ;
-        }
-
-        .tr:nth-child(odd) {
-            background-color: #178582;
-        }
-        .custom-btn-close{--bs-btn-close-color: #000;
-            --bs-btn-close-bg: url("assets/img/close_btn.svg");
+    .tr:nth-child(odd) {
+        background-color: #178582;
+    }
+    .custom-btn-close{--bs-btn-close-color: #000;
+        --bs-btn-close-bg: url("/assets/img/close_btn.svg");
         --bs-btn-close-opacity: 0.5;
         --bs-btn-close-hover-opacity: 0.75;
         --bs-btn-close-focus-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
@@ -47,15 +41,12 @@
         border: 0;
         border-radius: .375rem;
         opacity: var(--bs-btn-close-opacity);
-        }
-         </style>
-    <title></title>
-</head>
-<body>
+    }
+</style>
+
 
 <div id="navbar-container" class="vstack gap-2 ms-3 me-2 mt-3 position-fixed top-0 end-0">
-
-  <button id="index" class="rounded-pill mb-2" data-bs-toggle="tooltip" data-bs-placement="left" title="Home">
+    <button id="index" class="rounded-pill mb-2" data-bs-toggle="tooltip" data-bs-placement="left" title="Home">
         <i class="bi bi-bing"></i>
     </button>
     <button id="problems" class="rounded-pill mb-2 " data-bs-toggle="tooltip" data-bs-placement="left" title="Problems" >
@@ -77,8 +68,7 @@ if(basename($_SERVER['PHP_SELF']) != 'index.php') {
     // Second part of the navbar (only shown on pages other than "index.php")
     echo '<button style="z-index: 2" type="button" class="rounded-pill position-fixed bottom-0 end-0 mb-3 me-3 w-auto py-2 px-4" data-bs-toggle="offcanvas" data-bs-target="#todo-list" aria-controls="offcanvasWithBothOptions" >
     To-Do List
- <span id="todolist-badge" class="badge text-bg-secondary"></span>
-
+    <span id="todolist-badge" class="badge text-bg-secondary"></span>
 </button>
 
 <div class="offcanvas offcanvas-start" style="background-color: #061A26" data-bs-scroll="true" tabindex="-1" id="todo-list" aria-labelledby="offcanvasWithBothOptionsLabel">
@@ -92,10 +82,9 @@ if(basename($_SERVER['PHP_SELF']) != 'index.php') {
 }
 ?>
 
-</body>
-<script crossorigin="anonymous"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!--<script crossorigin="anonymous"-->
+<!--        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"-->
+<!--        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>-->
 <script>
     const container=document.querySelector('#navbar-container');
     const buttons = container.querySelectorAll('button');
@@ -107,5 +96,3 @@ if(basename($_SERVER['PHP_SELF']) != 'index.php') {
     let tooltipTriggerList = container.querySelectorAll('[data-bs-toggle="tooltip"]');
     let tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 </script>
-
-</html>
