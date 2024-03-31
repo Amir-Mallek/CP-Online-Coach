@@ -34,10 +34,7 @@ foreach ($problems as $problem) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Level Page</title>
-    <?php
-    link_bootstrap_style();
-    link_bootstrap_script();
-    ?>
+    <?php link_bootstrap_style(); ?>
     <link href="../assets/css/level-style.css" rel="stylesheet">
     <style>
         .progress-bar {
@@ -46,7 +43,10 @@ foreach ($problems as $problem) {
     </style>
 </head>
 <body>
-<?php require_navbar(); ?>
+<?php
+require_navbar();
+link_bootstrap_script();
+?>
 
 <div class="container">
     <div class="row mt-5">
