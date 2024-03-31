@@ -1,29 +1,29 @@
 
-<style>
-    .tr {
-        background-color: transparent;
-        color: white;
-        border-bottom: 1px solid #BFA181 ;
-    }
+    <style>
+        .tr {
+            background-color: transparent;
+            color: white;
+            border-bottom: 1px solid #BFA181 ;
+        }
 
-    .tr:nth-child(odd) {
-        background-color: #178582;
-    }
-    .primary{
-        color: white;
-    }
-    .checkbox{
-        border: none;
-    }
-    .checkbox:checked {
-        background-color: #BFA181; /* Change to desired color */
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Example box shadow */
-    }
-    .checkbox:focus {
-        outline: 0;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Example box shadow */
-    }
-</style>
+        .tr:nth-child(odd) {
+            background-color: #178582;
+        }
+        .primary{
+            color: white;
+        }
+        .checkbox{
+            border: none;
+        }
+        .checkbox:checked {
+            background-color: #BFA181; /* Change to desired color */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Example box shadow */
+        }
+        .checkbox:focus {
+            outline: 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Example box shadow */
+        }
+    </style>
 
 <div class="table container"></div>
 
