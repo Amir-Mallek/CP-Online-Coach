@@ -103,6 +103,7 @@ const verdictsData = {
     }]
 };
 const displayLimit=verdictsDataset.reduce((total, value) => total + value, 0) * 0.09;
+if(verdictsData)
 new Chart(verdictsChart, {
     type: 'doughnut',
     data: verdictsData,

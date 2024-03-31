@@ -11,12 +11,11 @@ require_once 'auto_load.php';
     <title>Home</title>
     <?php
     link_bootstrap_style();
-    link_bootstrap_script();
     ?>
     <link href="assets/css/home-style.css" rel="stylesheet">
 
 </head>
-<body>
+<body >
 
 <!-- navbar -->
 <?php require_navbar();
@@ -30,37 +29,15 @@ include "includes/user_stats.php";
         <div class="col-lg-3 my-2 px-3 shadow-sm text-center custom-card" id="left-card">
             <div class="row py-4 ">
                 <div class="col-md-5 mx-1 d-flex align-items-center justify-content-center">
-                    <img alt="profile picture" class="img-fluid rounded p-1" src="assets/img/profiles/profile_picture.png">
+                    <img alt="profile picture" class="img-fluid rounded p-1 shadow" style="max-height: 128px" src="assets/img/profiles/<?= (isset($user_data->image_name)?$user_data->image_name:'profile_picture.png')?>">
                 </div>
                 <div class="col-md-6 px-0 d-flex flex-column justify-content-center text-start ">
-                    <p class="h-6 primary mb-2 mt-3 fw-bold"><?=$user_data->username?></p>
+                    <p class="h-6 primary mb-2 mt-3 fw-bold "><?=$user_data->username?></p>
 <!--                    <p class="h-6 primary mb-3 mt-2 fw-semibold"><small class="secondary fw-normal">Rank</small> 300502</p>-->
                 </div>
             </div>
             <div class="row gap-1">
                 <?php buildUserSection();?>
-<!--            <a class="icon-link secondary text-decoration-none" href="https://codeforces.com/profile/CMiner">-->
-<!--                    <i class="bi bi-github h-auto"></i>-->
-<!--                CMiner-->
-<!--            </a>-->
-<!--            <a class="icon-link secondary text-decoration-none"-->
-<!--               href="https://www.linkedin.com/in/mouhib-bahri-2b2a182b6/">-->
-<!--                <i class="bi bi-linkedin h-auto"></i>-->
-<!--                Mouhib Bahri-->
-<!--            </a>-->
-<!--                <a class="icon-link secondary text-decoration-none"-->
-<!--                   href="https://www.linkedin.com/in/mouhib-bahri-2b2a182b6/">-->
-<!--                    -->
-<!--                    Mouhib Bahri-->
-<!--                </a>-->
-<!---->
-<!--                <a class="icon-link secondary text-decoration-none"-->
-<!--                   href="https://www.linkedin.com/in/mouhib-bahri-2b2a182b6/">-->
-<!--                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="bi" width="1em" height="1em" viewBox="0 0 24 24">-->
-<!--                        <path  d="M4.5 7.5A1.5 1.5 0 0 1 6 9v10.5A1.5 1.5 0 0 1 4.5 21h-3C.673 21 0 20.328 0 19.5V9c0-.828.673-1.5 1.5-1.5zm9-4.5A1.5 1.5 0 0 1 15 4.5v15a1.5 1.5 0 0 1-1.5 1.5h-3c-.827 0-1.5-.672-1.5-1.5v-15c0-.828.673-1.5 1.5-1.5zm9 7.5A1.5 1.5 0 0 1 24 12v7.5a1.5 1.5 0 0 1-1.5 1.5h-3a1.5 1.5 0 0 1-1.5-1.5V12a1.5 1.5 0 0 1 1.5-1.5z" />-->
-<!--                    </svg>-->
-<!--                    Mouhib Bahri-->
-<!--                </a>-->
 
             </div>
             <hr/>
@@ -150,7 +127,6 @@ include "includes/user_stats.php";
             <h5 class="primary">Verdicts</h5>
             <div class="row justify-content-center">
                 <div class="chart-container h-75 w-75">
-                    <canvas id="verdictsChart"></canvas>
                     <?php buildVerdictsSection();?>
                 </div>
             </div>
@@ -168,6 +144,7 @@ include "includes/user_stats.php";
     <!--    ADD NOTIFICATIONS OR AREA FOR UPCOMING CONTESTS-->
 </body>
 
+<?php link_bootstrap_script();?>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>

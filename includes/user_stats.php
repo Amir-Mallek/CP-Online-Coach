@@ -4,7 +4,7 @@
 $db=DB_Connexion::getInstance();
 
 //user section
-$req = $db->prepare('select u.username,u.linkedin_acc ,u.github_acc ,u.leetcode_acc ,u.codeforces_acc  from "user" u
+$req = $db->prepare('select u.username,u.linkedin_acc ,u.github_acc ,u.leetcode_acc ,u.codeforces_acc,u.image_name  from "user" u
             where u.id=:user_id;');
 $req->execute(array('user_id' => $user_id));
 /**
@@ -175,10 +175,11 @@ $req->execute(array('user_id' => $user_id));
  * [verdict,count]
  */
 $verdicts = $req->fetchAll(PDO::FETCH_ASSOC);
+$showPie=false;
 function buildVerdictsSection()
 {
     global $verdicts;
-
+    global $showPie;
     $status = array(
         "AC" => 0,
         "WA" => 0,
@@ -194,7 +195,18 @@ function buildVerdictsSection()
 
     $verdicts_count = array_values($status);
 
-    echo "<script> const verdictsDataset = " . json_encode($verdicts_count) . ";</script>";
+    foreach ($verdicts_count as $value) {
+        if ($value != 0) {
+            $showPie=true;
+            break;
+        }
+    }
+
+    if($showPie)
+        echo "<canvas id='verdictsChart'></canvas><script> const verdictsDataset = " . json_encode($verdicts_count) . ";</script>";
+    else
+        echo '<p style="color: #BFA181" class="mt-2">No verdicts yet? Start solving!</p>';
+
 
 }
 
