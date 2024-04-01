@@ -191,4 +191,17 @@ ul li::before {
     transition: transform 0.6s ease;
 
 }
+.dropdown-item:hover{
+    color: black !important;
+}
+.dropdown-item:active{
+    background-color: #178582;
+}
+.dropdown-menu{
+    padding: 0;
+    position: absolute;
+    inset: 0 0 auto auto;
+    margin: 0;
+    transform: translate3d(-11.5px, 37px, 0px);
+}
 

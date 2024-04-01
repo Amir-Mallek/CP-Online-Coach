@@ -168,7 +168,7 @@ function buildSolvedProblemsSection(){
     }
 }
 
-//verdicts section
+//verdicts sectionhistorical_problems_solved
 $req = $db->prepare("select * from getVerdictsSection(:user_id);");
 $req->execute(array('user_id' => $user_id));
 /**
@@ -201,14 +201,37 @@ function buildVerdictsSection()
             break;
         }
     }
-
+    echo '<script>let verdictsDataset;</script>';
     if($showPie)
-        echo "<canvas id='verdictsChart'></canvas><script> const verdictsDataset = " . json_encode($verdicts_count) . ";</script>";
+        echo "<div class='chart-container h-75 w-75'><canvas id='verdictsChart'></canvas></div><script> verdictsDataset = " . json_encode($verdicts_count) . ";</script>";
     else
         echo '<p style="color: #BFA181" class="mt-2">No verdicts yet? Start solving!</p>';
 
 
 }
+
+//problems solved section
+function getProblemsSolvedSection()
+{
+    global $db;
+    global $user_id;
+    $req = $db->prepare("SELECT * FROM historical_problems_solved WHERE user_id=:user_id ORDER BY year ASC, month ASC;");
+    $req->execute(array('user_id' => $user_id));
+
+    $problemsDataset = array();
+    foreach ($req->fetchAll(PDO::FETCH_OBJ) as $row) {
+        // If the year is not yet in the array, initialize it
+        if (!isset($problemsDataset[$row->year])) {
+            $problemsDataset[$row->year] = array();
+        }
+        $problemsDataset[$row->year][] = $row->nb_problems_solved;
+    }
+
+    echo "<script> const problemsDataset = " . json_encode($problemsDataset) . ";</script>";
+}
+
+getProblemsSolvedSection();
+
 
 //upcoming-contests section
 $req = $db->prepare("select * from upcoming_contests order by contest_date desc");
@@ -238,4 +261,4 @@ function buildUpcomingContestsSection(){
     }
 }
 
-?>
+

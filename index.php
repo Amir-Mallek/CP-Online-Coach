@@ -126,18 +126,25 @@ include "includes/user_stats.php";
         <div id="verdicts" class="custom-card col-lg-5 p-3">
             <h5 class="primary">Verdicts</h5>
             <div class="row justify-content-center">
-                <div class="chart-container h-75 w-75">
-                    <?php buildVerdictsSection();?>
-                </div>
+                <?php buildVerdictsSection();?>
             </div>
         </div>
 
         <div id="ranking" class="custom-card col-lg-6 p-3">
-            <h5 class="primary mb-6">Ranking</h5>
-            <div class="container text-center mt-5">
-                <canvas id="rankingChart"></canvas>
+            <div class="row justify-content-between align-items-center">
+                <h5 class="col primary mb-0">Problems Solved</h5>
+                <div class="col dropdown text-end">
+                    <button class="px-2 py-1 rounded dropdown-toggle show" type="button" data-bs-toggle="dropdown" aria-expanded="true">Year</button>
+                    <div class="dropdown-menu custom-card" data-popper-placement="bottom-end">
+                       <a class="dropdown-item primary">2022</a>
+                       <a class="dropdown-item primary">2023</a>
+                       <a class="dropdown-item primary" >2024</a>
+                    </div>
+                </div>
             </div>
-        </div>
+
+             <canvas class='mt-5' id="problemsSolvedChart" ></canvas>
+
     </div>
 </div>
 </div>
@@ -151,4 +158,4 @@ include "includes/user_stats.php";
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 
 <script src="assets/js/home-script.js"></script>
-<html>
+</html>

@@ -39,11 +39,12 @@ const skillsData = {
             backgroundColor: 'rgba(23,133,130,0.2)',
             borderColor: '#178582',
             pointBackgroundColor: '#178582',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
+            pointBorderColor: '#BFA181',
+            pointHoverBackgroundColor: '#BFA181',
             pointHoverBorderColor: '#178582'
         }]
 };
+
 new Chart(skillsChart, {
     type: 'radar',
     data: skillsData,
@@ -61,8 +62,14 @@ new Chart(skillsChart, {
                     color: '#BFA181'
                 },
                 ticks: {
-                    color: 'white',
-                    backdropColor: 'transparent'
+                    color: 'white',//'#BFA181',
+                    backdropColor: 'transparent',
+                    precision:0,
+                    z:1,
+                    font:{
+                        weight:'bold',
+                        size:15
+                    }
                 }
             }
         },
@@ -80,30 +87,32 @@ new Chart(skillsChart, {
 });
 
 const verdictsChart = document.querySelector('#verdictsChart');
-const verdictsData = {
-    labels: [
-        'AC',
-        'WA',
-        'TLE',
-        'MLE',
-        'CE',
-        'RTE'
-    ],
-    datasets: [{
-        data: verdictsDataset,
-        backgroundColor: [
-            '#04BF8A',
-            '#F24405',
-            '#9FC131',
-            '#FA7F08',
-            '#22BABB',
-            '#D6D58E'
+
+if(verdictsDataset){
+    const verdictsData = {
+        labels: [
+            'AC',
+            'WA',
+            'TLE',
+            'MLE',
+            'CE',
+            'RTE'
         ],
-        hoverOffset: 4
-    }]
-};
-const displayLimit=verdictsDataset.reduce((total, value) => total + value, 0) * 0.09;
-if(verdictsData)
+        datasets: [{
+            data: verdictsDataset,
+            backgroundColor: [
+                '#04BF8A',
+                '#F24405',
+                '#9FC131',
+                '#FA7F08',
+                '#22BABB',
+                '#D6D58E'
+            ],
+            hoverOffset: 4
+        }]
+    };
+    const displayLimit=verdictsDataset.reduce((total, value) => total + value, 0) * 0.09;
+
 new Chart(verdictsChart, {
     type: 'doughnut',
     data: verdictsData,
@@ -135,15 +144,17 @@ new Chart(verdictsChart, {
         }
     },
     plugins: [ChartDataLabels],
-});
+});}
+
 
 const rankingChart = document.querySelector('#rankingChart');
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const problemsSolvedChart=document.querySelector('#problemsSolvedChart');
 const rankingData = {
     labels: months, // Using the corrected labels array
     datasets: [{
         label: 'Rank',
-        data: [5210,4990,3500,3700,2900,2660,2100,2215,2090,2050,1948,1960],
+        data: problemsDataset[2024],
         fill: true,
         borderColor: '#178582',
         // backgroundColor: 'rgba(23,133,130,0.2)',
@@ -154,8 +165,7 @@ const rankingData = {
         tension: 0.1
     }]
 };
-
-new Chart(rankingChart, {
+const problemsChart= new Chart(problemsSolvedChart, {
     type: 'line',
     data: rankingData,
     responsive: true,
@@ -168,25 +178,37 @@ new Chart(rankingChart, {
         scales: {
             x: {
                 ticks: {
-                    color:'#BFA181',
+                    color: '#BFA181',
                     //borderColor: 'blue' // This sets the border color of the x-axis gridlines
                 },
                 grid: {
-                    color:'rgba(239,242,246,0.1)',
+                    color: 'rgba(239,242,246,0.1)',
                 }
 
             },
             y: {
                 ticks: {
-                    color:'#BFA181',
+                    color: '#BFA181',
                     //borderColor: 'green' // This sets the border color of the y-axis gridlines
                 },
                 grid: {
-                    color:'rgba(239,242,246,0.1)',
+                    color: 'rgba(239,242,246,0.1)',
                 }
             }
         }
     }
 
 });
+const buildProblemsSolvedSection= function (year) {
 
+    problemsChart.data.datasets[0].data= problemsDataset[year];// Would update the first dataset's value of 'March' to be 50
+    problemsChart.update();
+
+}
+const dropdownItems=document.querySelectorAll('.dropdown-item');
+
+dropdownItems.forEach((item) => {
+    item.addEventListener('click', function() {
+        buildProblemsSolvedSection(item.textContent); // Pass the text content of the dropdown item as the parameter
+    });
+});

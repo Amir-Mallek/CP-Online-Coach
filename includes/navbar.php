@@ -47,7 +47,7 @@
     </style>
 <nav>
 
-<div id="navbar-container" class="vstack gap-2 ms-3 me-2 mt-3 position-fixed top-0 end-0">
+<div id="navbar-container" class="vstack gap-2 ms-3 me-1 mt-3 position-fixed top-0 end-0">
     <button id="index" class="rounded-pill mb-2" data-bs-toggle="tooltip" data-bs-placement="left" title="Home">
         <i class="bi bi-bing"></i>
     </button>
@@ -84,7 +84,7 @@ if(basename($_SERVER['PHP_SELF']) != 'index.php') {
 }
 ?>
 </nav>
-s<script>
+<script>
     const container=document.querySelector('#navbar-container');
     const buttons = container.querySelectorAll('button');
     buttons.forEach(butt => {
