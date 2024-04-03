@@ -11,4 +11,15 @@ class Attempts_Table extends DB_Table {
         $response->execute([$problem_id, $user_id]);
         return $response->fetchAll(PDO::FETCH_OBJ);
     }
+
+    /**
+     * @param $user_id
+     * @return array|false [verdict,count]
+     */
+    public function get_all_verdicts($user_id){
+        $query = 'select * from getVerdictsSection (?)';
+        $response = $this->db_connexion->prepare($query);
+        $response->execute([$user_id]);
+        return $response->fetchAll(PDO::FETCH_OBJ);
+    }
 }

@@ -1,17 +1,11 @@
 <?php
 
 
-$db=DB_Connexion::getInstance();
-
 //user section
-$req = $db->prepare('select u.username,u.linkedin_acc ,u.github_acc ,u.leetcode_acc ,u.codeforces_acc,u.image_name  from "user" u
-            where u.id=:user_id;');
-$req->execute(array('user_id' => $user_id));
-/**
- * [username,linkedin_acc ,github_acc ,leetcode_acc ,codeforces_ac]
- */
-$user_data = $req->fetchObject();
-function buildUserSection(){
+$user=new User_Table($user_id);
+$user_data = $user->get_user();
+function buildUserSection(): void
+{
     global $user_data;
     if(isset($user_data->linkedin_acc)){
         $text=basename(parse_url($user_data->linkedin_acc, PHP_URL_PATH));
@@ -44,72 +38,63 @@ function buildUserSection(){
 
 
 }
-function buildLink ($link,$icon,$text) {
+
+function buildLink ($link,$icon,$text): void
+{
     echo '<a class="icon-link secondary text-decoration-none text-start" href="'.$link.'">'
         .$icon.$text.'</a>';
 }
 
 //badges section
-$req = $db->prepare("select * from getBadgesSection (:user_id);");
-$req->execute(array('user_id' => $user_id));
-/**
- * [title ,description,image_name,acquired]
- */
-$badges = $req->fetchAll(PDO::FETCH_ASSOC);
+$badges=new Badges_Status_Table();
+$badges_data = $badges->get_full_badges_status($user_id);
 $nb_badges_acquired=0;
-function buildBadgesSection(){
-    global $badges;
+function buildBadgesSection(): void
+{
+    global $badges_data;
     global $nb_badges_acquired;
-    foreach ($badges as $badge) {
+    foreach ($badges_data as $badge) {
         $acquired='';
-        if($badge['acquired']==1)
+        if($badge->acquired==1)
             $nb_badges_acquired++;
         else
             $acquired='opacity-50';
-        echo '<img src="assets/img/badges/' . $badge['image_name'] . '" class="col h-50 mb-2 w-50 ' .
-            $acquired. '" alt="' . $badge['title'] . '" data-bs-toggle="tooltip" data-bs-placement="bottom" title="' . $badge['title'] . ': ' . $badge['description'] . '" >';
+        echo '<img src="assets/img/badges/' . $badge->image_name . '" class="col h-50 mb-2 w-50 ' .
+            $acquired. '" alt="' . $badge->title . '" data-bs-toggle="tooltip" data-bs-placement="bottom" title="' . $badge->title . ': ' . $badge->description . '" >';
     }
     echo '<script>document.querySelector("#badges-number").textContent="' . $nb_badges_acquired . '";</script>';
 
 }
 
 //languages section
-$req = $db->prepare("select * from getLanguagesSection (:user_id);");
-$req->execute(array('user_id' => $user_id));
-/**
- * [language,count]
- */
-$languages = $req->fetchAll(PDO::FETCH_ASSOC);
-function buildLanguagesSection(){
-    global $languages;
-    foreach ($languages as $row) {
+$languages_data = $user->get_languages();
+function buildLanguagesSection(): void
+{
+    global $languages_data;
+    foreach ($languages_data as $row) {
         echo '<div class="row"><p class="rounded-pill mx-2 primary d-flex align-items-center justify-content-center w-auto" style="background-color:#eff2f699;max-width: 68px">'
-            .$row['language'].'</p><p class="primary col text-end ">'.$row['count'].'<small class="secondary"> problems solved</small></p></div>';
+            .$row->language.'</p><p class="primary col text-end ">'.$row->count.'<small class="secondary"> problems solved</small></p></div>';
     }
 }
 
 //skills section
-$req = $db->prepare("select * from getskillssection (:user_id);");
-$req->execute(array('user_id' => $user_id));
-/**
- * [topic,count,overall]
- */
-$skills = $req->fetchAll(PDO::FETCH_ASSOC);
-function buildSkillsSection(){
-    global $skills;
+$skills_data=$user->get_skills();
+function buildSkillsSection(): void
+{
+    global $skills_data;
     $colors=array('#9FC131','#F24405','#22BABB','#FA7F08','#04BF8A','#D6D58E');
     $skillsLabels=array();
     $skillsDataset=array();
-    foreach ($skills as $index => $skill) {
+    foreach ($skills_data as $index => $skill) {
         $color = $colors[$index%6];
-        $percentage = $skill['overall']==0?0:($skill['count'] / $skill['overall']) * 100;
-        array_push($skillsLabels, $skill['topic']);
-        array_push($skillsDataset, $skill['count']);
+        $percentage = $skill->overall==0?0:($skill->count / $skill->overall) * 100;
+        $skillsLabels[] = $skill->topic;
+        $skillsDataset[] = $skill->count;
         echo '<div>
                                     <div class="row">
-                                        <div class="col secondary text-start">'. $skill['topic'].'</div>
+                                        <div class="col secondary text-start">'. $skill->topic.'</div>
                                         <div class="col secondary text-end">
-                                            <small class="primary">'.$skill['count'].' </small>/'.$skill['overall'].'
+                                            <small class="primary">'.$skill->count.' </small>/'.$skill->overall.'
                                         </div>
                                     </div>
                                     <div class="row">
@@ -125,36 +110,33 @@ function buildSkillsSection(){
 }
 
 //difficulties/levels section
-$req = $db->prepare("select * from getDifficultySection(:user_id);");
-$req->execute(array('user_id' => $user_id));
-/**
- * [difficulty,count,overall]
- */
-$difficulties = $req->fetchAll(PDO::FETCH_ASSOC);
-function countSolvedProblems(){
-    global $difficulties;
+$difficulties_data = $user->get_difficulties();
+function countSolvedProblems(): string
+{
+    global $difficulties_data;
     $solved=0;
     $total=0;
-    foreach ($difficulties as $row) {
-        $solved+=$row['count'];
-        $total+=$row['overall'];
+    foreach ($difficulties_data as $row) {
+        $solved+=$row->count;
+        $total+=$row->overall;
     }
     return number_format($total==0?0:($solved/$total)*100,2);
 }
-function buildSolvedProblemsSection(){
-    global $difficulties;
+function buildSolvedProblemsSection(): void
+{
+    global $difficulties_data;
     $colors=array('bg-success','bg-warning','bg-danger');
 
-    foreach ($difficulties as $index => $row) {
-        $percentage = $row['overall']==0?0:($row['count'] / $row['overall']) * 100;
+    foreach ($difficulties_data as $index => $row) {
+        $percentage = $row->overall==0?0:($row->count / $row->overall) * 100;
         $color = $colors[$index];
         echo '<div class="container">
                                 <div class="row">
                                     <div class="col secondary text-start">
-                                        '.$row['difficulty'].'
+                                        '.$row->difficulty.'
                                     </div>
                                     <div class="col secondary text-end">
-                                        <small class="primary">'.$row['count'].'</small>/'.$row['overall'].'
+                                        <small class="primary">'.$row->count.'</small>/'.$row->overall.'
                                     </div>
                                 </div>
                                 <div class="row">
@@ -168,17 +150,16 @@ function buildSolvedProblemsSection(){
     }
 }
 
-//verdicts sectionhistorical_problems_solved
-$req = $db->prepare("select * from getVerdictsSection(:user_id);");
-$req->execute(array('user_id' => $user_id));
+//verdicts section
+$attempts=new Attempts_Table();
 /**
  * [verdict,count]
  */
-$verdicts = $req->fetchAll(PDO::FETCH_ASSOC);
+$verdicts_data=$attempts->get_all_verdicts($user_id);
 $showPie=false;
-function buildVerdictsSection()
+function buildVerdictsSection(): void
 {
-    global $verdicts;
+    global $verdicts_data;
     global $showPie;
     $status = array(
         "AC" => 0,
@@ -189,8 +170,8 @@ function buildVerdictsSection()
         "RTE" => 0
     );
 
-    foreach ($verdicts as $verdict) {
-        $status[$verdict['verdict']] = $verdict['count'];
+    foreach ($verdicts_data as $verdict) {
+        $status[$verdict->verdict] = $verdict->count;
     }
 
     $verdicts_count = array_values($status);
@@ -211,15 +192,13 @@ function buildVerdictsSection()
 }
 
 //problems solved section
-function getProblemsSolvedSection()
+$historical_problems_solved=new Historical_Problems_Solved_Table();
+$historical_problems_solved_data=$historical_problems_solved->get_status($user_id);
+function getProblemsSolvedSection(): void
 {
-    global $db;
-    global $user_id;
-    $req = $db->prepare("SELECT * FROM historical_problems_solved WHERE user_id=:user_id ORDER BY year ASC, month ASC;");
-    $req->execute(array('user_id' => $user_id));
-
+    global $historical_problems_solved_data;
     $problemsDataset = array();
-    foreach ($req->fetchAll(PDO::FETCH_OBJ) as $row) {
+    foreach ($historical_problems_solved_data as $row) {
         // If the year is not yet in the array, initialize it
         if (!isset($problemsDataset[$row->year])) {
             $problemsDataset[$row->year] = array();
@@ -229,31 +208,27 @@ function getProblemsSolvedSection()
 
     echo "<script> const problemsDataset = " . json_encode($problemsDataset) . ";</script>";
 }
-
 getProblemsSolvedSection();
 
 
 //upcoming-contests section
-$req = $db->prepare("select * from upcoming_contests order by contest_date desc");
-$req->execute();
-/**
- * [title,image_name,contest_link,place_or_platform,contest_date]
- */
-$upcoming_contests = $req->fetchAll(PDO::FETCH_ASSOC);
-function buildUpcomingContestsSection(){
-    global $upcoming_contests;
+$upcoming_contests = new Upcoming_Contests_Table();
+$upcoming_contests_data = $upcoming_contests->get_upcoming_contests();
+function buildUpcomingContestsSection(): void
+{
+    global $upcoming_contests_data;
 
-    foreach ($upcoming_contests as $contest) {
-        $contest_date=date('l j F, Y', strtotime($contest['contest_date']));
+    foreach ($upcoming_contests_data as $contest) {
+        $contest_date=date('l j F, Y', strtotime($contest->contest_date));
         echo '<div class="col">
-                        <a href="'.$contest['contest_link'].'" class="text-decoration-none">
+                        <a href="'.$contest->contest_link.'" class="text-decoration-none">
                         <div class="card">
                             <div class="h-100 d-flex align-items-start">
-                                <img src="assets/img/'.$contest['image_name'].'" class="card-img-top" alt="'.$contest['title'].'">
+                                <img src="assets/img/'.$contest->image_name.'" class="card-img-top" alt="'.$contest->title.'">
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title">'.$contest['title'].'</h5>
-                                <p class="card-text">'.$contest_date.', '.$contest['place_or_platform'].'</p>
+                                <h5 class="card-title">'.$contest->title.'</h5>
+                                <p class="card-text">'.$contest_date.', '.$contest->place_or_platform.'</p>
                             </div>
                         </div>
                         </a>
