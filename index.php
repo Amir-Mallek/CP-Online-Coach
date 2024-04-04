@@ -2,22 +2,20 @@
 require_once 'includes/userChecker.php';
 require_once 'auto_load.php';
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Home</title>
-    <?php
-    link_bootstrap_style();
-    ?>
+    <?php link_bootstrap_style(); ?>
     <link href="assets/css/home-style.css" rel="stylesheet">
+    <link href="assets/css/circular-progress-bar.css" rel="stylesheet">
 </head>
-<body >
-<!-- navbar -->
-<?php require_navbar();
-include "includes/user_stats.php";
-?>
+<body>
+<?php require_navbar(); ?>
+<?php include "includes/user_stats.php"; ?>
 <div id="main-container" style="padding: 1.5em 4em 1.5em 4em">
     <div class="row container justify-content-center py-0 px-1 mx-auto mb-3 " >
         <!-- left card -->
@@ -137,12 +135,16 @@ include "includes/user_stats.php";
                 </div>
             </div>
         </div>
-    </div>
-</body>
-<?php link_bootstrap_script();?>
+</div>
+
+<!-- JavaScript -->
+<?php link_bootstrap_script(); ?>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+<script src="assets/js/circular-progress-bar.js"></script>
 <script src="assets/js/home-script.js"></script>
+</body>
 </html>
+
+
