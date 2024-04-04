@@ -305,6 +305,7 @@ async function addToDo() {
     return await response.json();
 }
 doLaterButton.addEventListener('click', () =>{
-    buildTask('p'+getProblemID(), problemTitle, problemLink, false);
+    addTask(problemTitle,problemLink,false);
+    //buildTask('p'+getProblemID(), problemTitle, problemLink, false);
     addToDo().then(r => {});
 });
