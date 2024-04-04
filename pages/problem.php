@@ -63,19 +63,29 @@ link_bootstrap_script();
         <div class="col-2"></div>
         <div class="col-8">
             <h1 class="display-1"><?= $problem->title ?></h1>
-            <h4><a href="<?= $problem->link ?>" target="_blank"
-                   class="link-light link-underline-opacity-25 link-underline-opacity-100-hover clink">
-                    <?= $problem->platform." ".$problem->id_platform  ?>
-                   <span class="material-symbols-outlined">link</span>
-                </a>
-            </h4>
-            
-            <h4 class="mt-2 ptags">
-                Problem Tags:
-                <?php foreach ($tags as $tag): ?>
-                    <span class="tag rounded px-2 pb-1"><?= $tag ?></span>
-                <?php endforeach; ?>
-            </h4>
+            <div class="container">
+                <div class="row align-items-center justify-content-start">
+                    <div class="col-5">
+                        <h4><a href="<?= $problem->link ?>" target="_blank"
+                               class="link-light link-underline-opacity-25 link-underline-opacity-100-hover clink">
+                                <?= $problem->platform." ".$problem->id_platform  ?>
+                                <span class="material-symbols-outlined">link</span>
+                            </a>
+                        </h4>
+
+                        <h4 class="mt-2 ptags">
+                            Problem Tags:
+                            <?php foreach ($tags as $tag): ?>
+                                <span class="tag rounded px-2 pb-1" style="display: inline-block;"><?= $tag ?></span>
+                            <?php endforeach; ?>
+                        </h4>
+                    </div>
+                    <div class="col">
+                        <button class="btn input do-later" style="width: 25%; display: ;">Do Later 📆</button>
+                    </div>
+                </div>
+            </div>
+
             
             <div class="timer-div mt-4 container">
                 <div class="row align-items-center">
@@ -189,6 +199,8 @@ link_bootstrap_script();
             <?php endif; ?>
         </div>
         <div class="col-2"></div>
+
+        <div class="toast-container position-fixed bottom-0 st-0 mb-5"></div>
     </div>
 </div>
 <script src="../assets/js/problem-script.js"></script>
