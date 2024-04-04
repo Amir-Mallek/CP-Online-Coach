@@ -35,7 +35,7 @@
     const buildTask = function(id, taskContent, problemLink, checked) {
         if (taskContent !== '') {
             const task = document.createElement("div");
-            task.className = "tr row";
+            task.className = "tr py-1 row";
             task.innerHTML = `
             <div class="col-1 d-flex align-items-center justify-content-center">
                 <input class="m-0 form-check-input checkbox" type="checkbox" ${checked ? 'checked' : ''} value="" id="flexCheckDefault">
