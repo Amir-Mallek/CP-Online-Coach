@@ -1,14 +1,10 @@
 <?php
-require_once '../auto_load.php';
+
+require_once '../includes/userChecker.php';
+require_once 'Badges.php';
+
 
 $attempt_data = json_decode(file_get_contents("php://input"), true);
-session_id($attempt_data['session_id']);
-session_start();
-if (!isset($_SESSION['user_id'])) {
-    echo json_encode('-1');
-    exit;
-}
-$user_id = $_SESSION['user_id'];
 
 $attempt = [
     'attempt_number' => $attempt_data['attempt_number'],
@@ -21,13 +17,19 @@ $attempt = [
     'user_id' => $user_id
 ];
 
+$status_code = 1;
+if ($attempt['verdict'] == 'AC') {
+    $status_code = 0;
+    $new_badges = update_badges_progress($attempt);
+    if (!empty($new_badges))
+        echo json_encode($new_badges);
+    else
+        echo json_encode(-1);
+} else echo json_encode(-1);
 
 $attempts_table = new Attempts_Table();
 $status_table = new Status_Table();
 $attempts_table->insert($attempt);
-$status_code = 1;
-if ($attempt['verdict'] == 'AC') $status_code = 0;
+
 $status_table->set_status($attempt['problem_id'], $attempt['user_id'], $status_code);
 
-
-echo json_encode('1');

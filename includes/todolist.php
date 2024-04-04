@@ -1,29 +1,29 @@
 
-    <style>
-        .tr {
-            background-color: transparent;
-            color: white;
-            border-bottom: 1px solid #BFA181 ;
-        }
+<style>
+    .tr {
+        background-color: transparent;
+        color: white;
+        border-bottom: 1px solid #BFA181 ;
+    }
 
-        .tr:nth-child(odd) {
-            background-color: #178582;
-        }
-        .primary{
-            color: white;
-        }
-        .checkbox{
-            border: none;
-        }
-        .checkbox:checked {
-            background-color: #BFA181; /* Change to desired color */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Example box shadow */
-        }
-        .checkbox:focus {
-            outline: 0;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Example box shadow */
-        }
-    </style>
+    .tr:nth-child(odd) {
+        background-color: #178582;
+    }
+    .primary{
+        color: white;
+    }
+    .checkbox{
+        border: none;
+    }
+    .checkbox:checked {
+        background-color: #BFA181; /* Change to desired color */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Example box shadow */
+    }
+    .checkbox:focus {
+        outline: 0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Example box shadow */
+    }
+</style>
 
 <div class="table container"></div>
 
@@ -35,7 +35,7 @@
     const buildTask = function(id, taskContent, problemLink, checked) {
         if (taskContent !== '') {
             const task = document.createElement("div");
-            task.className = "tr row";
+            task.className = "tr py-1 row";
             task.innerHTML = `
             <div class="col-1 d-flex align-items-center justify-content-center">
                 <input class="m-0 form-check-input checkbox" type="checkbox" ${checked ? 'checked' : ''} value="" id="flexCheckDefault">
@@ -114,8 +114,7 @@
     const todolistBadge=document.querySelector('#todolist-badge');
 
     let tasks = loadTodoListFromCookies();
-    console.log(todolistBadge);
-    console.log(tasks);
+
     tasks.forEach((value, key) => {
         buildTask(key, value.taskContent, value.problemLink, value.checked);
     });

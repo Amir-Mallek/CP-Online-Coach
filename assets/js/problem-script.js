@@ -2,12 +2,14 @@ const startButton = document.querySelector('.start');
 const stopButton = document.querySelector('.stop');
 const resetButton = document.querySelector('.reset');
 const addAttemptButton = document.querySelector('button.add-attempt')
+const doLaterButton = document.querySelector('.do-later');
 
 const timeSpentIn = document.querySelector('input.time-spent');
 const verdictIn = document.querySelector('select.verdict');
 const langIn = document.querySelector('select.lang');
 
 const attempts = document.querySelector('.attempts>tbody');
+const toastContainer = document.querySelector('.toast-container');
 
 const seconds = document.querySelector('.seconds');
 const minutes = document.querySelector('.minutes');
@@ -143,7 +145,7 @@ hintContainer.addEventListener('click', async (event) => {
 
 //adding an attempt
 
-const langs = ['C++', 'Java', 'Python', 'Java Script'];
+const langs = ['C++', 'Java', 'Python', 'Ruby'];
 
 const verdicts = [
     'AC', 
@@ -188,7 +190,6 @@ function getTimeSpentDB() {
 
 async function addAttemptToDB() {
     const attempt = {
-        session_id: getSessionID(),
         problem_id: getProblemID(),
         attempt_number: getAttemptCount(),
         attempt_time: getCurrentDateTime(),
@@ -203,7 +204,7 @@ async function addAttemptToDB() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(attempt)
     });
-    return response.json(); // parses JSON response into native JavaScript objects
+    return await response.json();
 }
 
 function getSessionID() {
@@ -259,10 +260,51 @@ function addAttempt() {
     attempts.insertBefore(attempt, attempts.firstChild);
     timeSpentIn.value = '';
 }
+
+function showNewBadge(badge) {
+    toastContainer.innerHTML += `<div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <img src="http://localhost:8000/assets/img/badges/${badge['img_name']}" class="rounded me-2" width="20%">
+                        <strong class="me-auto">${badge['title']}</strong>
+                        <small class="text-body-secondary">just now</small>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        ${badge['description']}
+                    </div>
+                </div>`
+    const newToast = toastContainer.lastChild;
+    const toast = new bootstrap.Toast(newToast);
+    toast.show();
+}
 addAttemptButton.addEventListener('click', () => {
-    addAttemptToDB().then(r => {
-        console.log(r);
-    });
+    addAttemptToDB().then(newBadges => {
+        if (newBadges !== -1) {
+            for (const badge of newBadges) {
+                showNewBadge(badge);
+            }
+        }
+    })
     addAttempt();
 })
 
+// do later
+const problemTitle = document.querySelector('.col-8>h1.display-1').innerText;
+const problemLink = window.location.href;
+
+async function addToDo() {
+    const data = {
+        'problem_id': getProblemID()
+    }
+    const url = '../pages/add_ToDo.php';
+    const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+    });
+    return await response.json();
+}
+doLaterButton.addEventListener('click', () =>{
+    buildTask('p'+getProblemID(), problemTitle, problemLink, false);
+    addToDo().then(r => {});
+});

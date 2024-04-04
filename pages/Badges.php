@@ -1,8 +1,7 @@
 <?php
 
+require_once '../auto_load.php';
 
-require_once 'auto_load.php';
-$user_id  = 1;
 $new_acquired_badges = [];
 
 $badge_table = new Badge_Table();
@@ -16,20 +15,16 @@ foreach ($badges_status as $badge) {
     $status[$badge->badge_id] = $badge;
 }
 
-print_r($status);
-function update_badges_progress($last_attempt)
-{
+
+function update_badges_progress($last_attempt) {
     $user_id = $last_attempt['user_id'];
     global $badges, $status, $new_acquired_badges;
     foreach ($badges as $badge) {
         if (array_key_exists($badge->id, $status) && $status[$badge->id]->acquired)
             continue;
-
-        echo $badge->id;
         switch ($badge->id) {
             //Lighting Hawk:First Solve
             case 1:
-            case 5:
                 increase_progress($badge, $user_id);
                 break;
             //speed: solve under 5mins
@@ -56,14 +51,15 @@ function update_badges_progress($last_attempt)
 //                if ($badge->progress == 3)
 //                    showNewBadge($badge);
 //                break;
+            case 5:
+                increase_progress($badge, $user_id);
         }
     }
     return $new_acquired_badges;
 }
 
 
-function increase_progress($badge, $user_id) {
-
+function increase_progress($badge, $user_id){
     global $status, $badges_status_table, $new_acquired_badges;
 
     if (array_key_exists($badge->id, $status)) {
@@ -71,13 +67,13 @@ function increase_progress($badge, $user_id) {
         $status[$badge->id]->acquired = ($badge->requirement == $status[$badge->id]->progress);
         $badges_status_table->update_badge_status($badge->id, $user_id, $status[$badge->id]->progress, $status[$badge->id]->acquired);
     } else {
-        $new_status = [
+        $new_status =  [
             'badge_id' => $badge->id,
             'user_id' => $user_id,
             'progress' => 1,
             'acquired' => (int)($badge->requirement == 1)
         ];
-        $status[$badge->id] = (object)$new_status;
+        $status[$badge->id] = (object) $new_status;
         $badges_status_table->insert($new_status);
     }
     if ($status[$badge->id]->acquired)
@@ -87,11 +83,3 @@ function increase_progress($badge, $user_id) {
             'img_name' => $badge->image_name
         ];
 }
-
-$attempt = [
-    'time_spent_min' => 55,
-    'attempt_time' => '2020/12/11, 09:09',
-    'user_id' => 1
-];
-
-print_r(update_badges_progress($attempt));

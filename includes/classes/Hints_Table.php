@@ -5,7 +5,7 @@ class Hints_Table extends DB_Table {
         parent::__construct('hints');
     }
 
-    public function get_hints ($problem_id) {
+    public function get_hints($problem_id) {
         $query = 'select * from hints where problem_id  = ?';
         $response = $this->db_connexion->prepare($query);
         $response->execute([$problem_id]);
