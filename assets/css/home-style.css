@@ -11,6 +11,7 @@ body{
 .custom-card{
     background-color: #262E33;
     border: 2px solid #BFA181;
+    padding: 1rem;
 }
 button{
     background-color: #262E33;
@@ -157,6 +158,14 @@ ul li::before {
     #main-container{
         padding-left: 88px;
         padding-right: 88px;
+    }
+}
+@media(max-width: 991.5px){
+    #right-card,#rankingContainer{
+        padding-left: 0 !important;
+    }
+    #rankingContainer{
+        padding-top: 1rem !important ;
     }
 }
 

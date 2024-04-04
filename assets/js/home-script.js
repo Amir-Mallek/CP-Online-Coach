@@ -28,6 +28,9 @@ addButton.addEventListener('click',()=>{
         addTask(taskInput.value,undefined,  false );
 });
 
+
+
+
 const skillsChart = document.querySelector('#skillsChart');
 const skillsData = {
     labels: skillsLabels,
@@ -212,3 +215,37 @@ dropdownItems.forEach((item) => {
         buildProblemsSolvedSection(item.textContent); // Pass the text content of the dropdown item as the parameter
     });
 });
+
+/**
+ * Retrieves the height of the specified element.
+ * @param {HTMLElement} element - The HTML element whose height is to be retrieved.
+ * @returns {number} The height of the element.
+ */
+function getHeight(element) {
+    return element.getBoundingClientRect().height;
+}
+
+
+/**
+ * Calculates the maximum height for the upcoming contests scrollable area.
+ * Ensures that the left card and right card have the same height.
+ * @returns {number} The calculated max-height.
+ */
+function calculateMaxHeight() {
+    const rightCardChildren = rightCard.children;
+    const leftCardHeight = getHeight(leftCard);
+    const height1 = getHeight(rightCardChildren[0]);
+    const height2 = getHeight(rightCardChildren[1]);
+    const height3 = getHeight(upcomingContests.children[0]);
+    const extraMargin = 42.8; // px
+    const extraPadding = 32; // px
+    return leftCardHeight - height1 - height2 - extraMargin - extraPadding - height3;
+}
+
+// Get DOM elements
+const upcomingContests = document.querySelector('#upcoming-contests');
+const upcomingContestsContent = upcomingContests.querySelector('#upcoming-contests-content');
+const rightCard = document.querySelector('#right-card');
+const leftCard = document.querySelector('#left-card');
+
+upcomingContestsContent.style.maxHeight = calculateMaxHeight() + "px";
