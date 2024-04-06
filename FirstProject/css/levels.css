@@ -1,0 +1,21 @@
+:root{
+    --dark-coleur : #262E33;;
+    --Bleufonce :  #0A1828;
+    --Turquoise :#178582; 
+    --Or : #BFA181;
+    --gris : #262E33;
+
+}
+body{
+    background-color: var(--Bleufonce);
+}
+.level{
+    color: var(--Or);
+    border: var(--Or) solid 2px;
+}
+.edit-button{
+    background-color: var(--Turquoise);
+}
+.edit-button:hover{
+    border: var(--Or) solid 1px;
+}

@@ -1,0 +1,58 @@
+:root{
+    --dark-coleur : #262E33;;
+    --Bleufonce :  #0A1828;
+    --Turquoise :#178582; 
+    --Or : #BFA181;
+    --gris : #262E33;
+
+}
+.custom-container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    height: 50%;
+}
+.custom-label{
+    color: var(--Or);
+    font-size: 20px;
+    margin-left: 3%;
+}
+.custom-input{
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid var(--Or);
+    padding: 5px;
+    background-color: var(--gris);
+    color: white;
+    margin: 3%;
+}
+input.no-suffix-icon::-webkit-inner-spin-button,
+input.no-suffix-icon::-webkit-outer-spin-button {
+    display: none;
+}
+.custom-input:focus{
+    background-color: var(--gris);
+    box-shadow: none;
+    border-color: var(--Or);
+    color: white;
+}
+.add-admin-header{
+    color : var(--Or);
+    margin-left: 30%;
+    position: absolute;
+    bottom: 110%;
+}
+.custom-btn{
+    margin-top: 5%;
+    width: 40%;
+
+}
+.go-back{
+    text-decoration: none;
+    color : var(--Or);
+    position: absolute;
+    top: 5%;
+    left: 5%;
+}

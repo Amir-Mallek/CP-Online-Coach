@@ -1,0 +1,88 @@
+:root{
+    --dark-coleur : #262E33;;
+    --Bleufonce :  #0A1828;
+    --Turquoise :#178582;
+    --Or : #BFA181;
+    --gris : #262E33;
+
+}
+body{
+    background-color: var(--Bleufonce);
+    color: var(--Or);
+}
+
+input.no-suffix-icon::-webkit-inner-spin-button,
+input.no-suffix-icon::-webkit-outer-spin-button {
+    display: none;
+
+}
+.no-suffix-icon{
+    background-color: var(--gris);
+    border: none;
+}
+.no-suffix-icon:focus{
+    background-color: var(--gris);
+    color: var(--Or);
+}
+label{
+    font-size: larger;
+    margin: 0 4% 4% 4%;
+}
+.text,.text:focus{
+    color: var(--Or);
+    background-color: var(--gris);
+    border: none;
+    resize: none;
+    box-shadow: none;
+    margin-left: 4%;
+}
+.resource{
+    padding: 10px;
+    margin: 5%;
+    background-color: var(--gris);
+}
+.resource>div>div{
+    text-align: center;
+}
+.resource>div>div>a{
+    color: white;
+    text-decoration: none;
+}
+.resource>div>div>a:hover{
+    color: var(--Or);
+}
+.add-resource-btn{
+    margin-top :50%;
+    margin-left: 55%;
+
+}
+.add-resource{
+    position: relative;
+    padding: 10px;
+    margin: 1%;
+}
+input,input:focus{
+    background-color: var(--gris) !important;
+    border: none !important;
+    color: var(--Or) !important;
+    box-shadow: none !important;
+}
+.link{
+    margin-bottom: 1%;
+}
+.button{
+
+    position: absolute;
+    left : 83%;
+    top : 50%;
+}
+.btn1{
+    width: 15%;
+    position: absolute;
+    left : 93%;
+    top : 45.5%;
+    margin: 0;
+}
+.save-btn{
+    width: 15%;
+}
