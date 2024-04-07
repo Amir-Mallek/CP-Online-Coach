@@ -50,7 +50,7 @@ function buildBadgesSection(): void
 
     foreach ($badges_data as $badge) {
         $acquired = $badge->acquired == 1 ? '' : 'opacity-50';
-        echo '<img src="assets/img/badges/' . $badge->image_name . '" class="col mb-1 ' . $acquired . '" alt="' . $badge->title . '" data-bs-toggle="tooltip" data-bs-placement="bottom" title="' . $badge->title . ': ' . $badge->description . '" >';
+        echo '<img src="assets/img/badges/' . $badge->image_name . '" class="mb-1 ' . $acquired . '" alt="' . $badge->title . '" data-bs-toggle="tooltip" data-bs-placement="bottom" title="' . $badge->title . ': ' . $badge->description . '" >';
         if ($badge->acquired == 1) {
             $nb_badges_acquired++;
         }

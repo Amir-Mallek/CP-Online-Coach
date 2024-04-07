@@ -6,6 +6,7 @@ body{
     background-color: #262E33;
     border: 2px solid #BFA181;
     padding: 1rem;
+    margin-bottom: 1rem;
 }
 button{
     background-color: #262E33;
@@ -47,11 +48,15 @@ ul li::before {
 }
 
 #badges img{
-    max-height: 56px;
-
+    height: 80px;
+    width: auto;
 }
 
-
+@media (max-width: 575.5px) {
+    #badgesCard{
+        margin-left: 0 !important;
+    }
+}
 @media (max-width: 850px) {
     #main-container{
         padding-left: 88px;

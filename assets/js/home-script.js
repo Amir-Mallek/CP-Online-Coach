@@ -225,7 +225,7 @@ function fixUpcomingContestsHeight() {
         const height1 = getHeight(rightCardChildren[0]);
         const height2 = getHeight(rightCardChildren[1]);
         const height3 = getHeight(upcomingContests.children[0]);
-        const extraMargin = 42.8; // px
+        const extraMargin = 27.5; // px
         const extraPadding = 32; // px
         return leftCardHeight - height1 - height2 - extraMargin - extraPadding - height3;
     }

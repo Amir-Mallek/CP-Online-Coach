@@ -17,9 +17,9 @@ require_once 'auto_load.php';
 <?php require_navbar(); ?>
 <?php include "includes/user_stats.php"; ?>
 <div id="main-container" style="padding: 1.5em 4em 1.5em 4em">
-    <div class="row container justify-content-center py-0 px-1 mx-auto mb-3 " >
+    <div class="row container justify-content-center py-2 px-1 mx-auto " >
         <!-- left card -->
-        <div class="col-lg-3 my-2 py-0 px-3 h-100 shadow-sm text-center custom-card" id="left-card">
+        <div class="col-lg-3 py-0 px-3 h-100 shadow-sm text-center custom-card" id="left-card">
             <div class="row py-4 ">
                 <div class="col-md-5 d-flex align-items-center justify-content-center">
                     <img alt="profile picture" class="img-fluid rounded p-1 shadow" style="max-height: 128px" src="assets/img/profiles/<?= (isset($user_data->image_name)?$user_data->image_name:'profile_picture.png')?>">
@@ -56,10 +56,10 @@ require_once 'auto_load.php';
             <hr/>
         </div>
         <!-- right cards -->
-        <div class="col-lg-9 my-2 pe-0 " style="padding-left: 1.5rem" id="right-card">
-            <div class="row mx-auto mb-3">
+        <div class="col-lg-9 pe-0 " style="padding-left: 1.5rem" id="right-card">
+            <div class="row mx-auto">
                 <!-- solved problems card -->
-                <div class="col me-2 custom-card">
+                <div class="col-sm custom-card">
                     <div class="row">
                         <div class="col-md-4 circular">
                             <p class="secondary text-start" style="font-size: small">Solved Problems</p>
@@ -83,15 +83,15 @@ require_once 'auto_load.php';
                     </div>
                 </div>
                 <!-- badges card -->
-                <div class="col ms-2 custom-card py-3 position-relative">
+                <div id="badgesCard" class="col-sm ms-3 custom-card py-3 position-relative">
                     <p class="secondary mb-0" style="font-size: small">Badges</p>
                     <p id="badges-number" class="primary fs-5 mb-2 fw-bold"></p>
-                    <div id="badges" class="overflow-x-auto flex-nowrap row px-1 mx-1 py-1 position-absolute mb-1 bottom-0 start-0 end-0">
+                    <div id="badges" class="overflow-x-auto flex-nowrap row px-1 mx-1 py-1 row mb-1">
                         <?php buildBadgesSection();?>
                     </div>
                 </div>
             </div>
-            <div class="custom-card p-3 mb-3">
+            <div class="custom-card p-3">
                 <h5 class="primary mb-6">To-Do List</h5>
                 <div class="rounded-2 mb-4 mt-1 d-flex align-items-center justify-content-between ps-2 mb-2" style="background-color: #eff2f699;height: 50px; border: 2px solid #BFA181 ;">
                     <input id="taskInput" type="text" class=" p-1 form-control border-0 h-100" style="background-color:transparent;box-shadow: none;color: white;" placeholder="Add your task">
@@ -110,7 +110,7 @@ require_once 'auto_load.php';
     </div>
     <div class="row container mx-auto py-0 px-1 text-center" >
         <div class="col-lg px-0">
-            <div id="verdicts" class="custom-card">
+            <div id="verdicts" class="custom-card mb-0">
                 <h5 class="primary">Verdicts</h5>
                 <div class="row">
                     <?php buildVerdictsSection();?>
