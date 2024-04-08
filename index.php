@@ -110,7 +110,7 @@ require_once 'auto_load.php';
     </div>
     <div class="row container mx-auto py-0 px-1 text-center" >
         <div class="col-lg px-0">
-            <div id="verdicts" class="custom-card mb-0">
+            <div id="verdicts" class="custom-card mb-0 h-100">
                 <h5 class="primary">Verdicts</h5>
                 <div class="row">
                     <?php buildVerdictsSection();?>
