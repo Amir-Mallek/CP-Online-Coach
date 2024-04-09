@@ -1,0 +1,98 @@
+.rectangle-icon {
+    width: 17%; /* Use percentage for adaptive width */
+    height: 80%; /* Use viewport height for adaptive height */
+    background-color: #262E33; /* Background color of the rectangle */
+    border: 2px solid #BFA181; /* Border color and width */
+    border-radius: 5px; /* Border radius for rounded corners (optional) */
+    display: flex;
+    flex-direction: column; /* Arrange children vertically */
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    color: #BFA181; /* Color of the text/icon inside the rectangle */
+    margin-left: 6%; /* Use percentage for adaptive margin */
+    margin-right: 1%; /* Use percentage for adaptive margin */
+    font-size: calc((4vw + 4vh)/2); /* Use viewport width for adaptive font size */
+    position: relative;
+    transition: transform 0.3s;
+}
+
+.rectangle-icon:hover {
+    transform: scale(1.1); /* Increase the size of the rectangle on hover */
+    z-index: 1; /* Ensure that the hovered rectangle appears on top of others */
+}
+
+body {
+    background-color: #061A26; /* New background color for the entire webpage */
+    margin-top: 6% ;/* Use viewport height for adaptive margin */
+    margin-bottom: 0;
+    margin-left: 1%; /* Use percentage for adaptive margin */
+    margin-right: 10%; /* Use percentage for adaptive margin */
+}
+
+.layer {
+    height: 40vh;
+    background-color: #0A1828;
+    display: flex;
+    position: relative;
+    margin-top: 1%;
+    flex-wrap: wrap;
+    /*justify-content: space-around; !* Distribute flex items evenly *!*/
+}
+
+.progress-container {
+    display: flex;
+    width: 80%;
+    height: 10%;
+    background-color: #808080;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    bottom: 15%;
+    left: 10%;
+}
+
+.progress-bar2 {
+    width: 50%;
+    height: 100%;
+    background-color: #BFA181;
+    border-radius: 5px;
+    transition: width 0.5s ease-in-out;
+}
+
+.done{
+    position: absolute;
+    bottom: 15%;
+    scale: 2.0;
+
+}
+
+.lvl-number {
+    position: absolute;
+    top: 22%;
+}
+
+.advice {
+    font-size: 2vh; /* Use viewport width for adaptive font size */
+    color: #BFA181;
+    position: absolute;
+    bottom: 0.5%;
+    display: none;
+}
+
+/*@media screen and (max-width: 768px) {*/
+/*    .rectangle-icon {*/
+/*        width: 40%; !* Adjust width for smaller screens *!*/
+/*    }*/
+/*}*/
+
+/*@media screen and (max-width: 576px) {*/
+/*    .rectangle-icon {*/
+/*        width: 80%; !* Further adjust width for even smaller screens *!*/
+/*    }*/
+/*}*/
+* {
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none; /* Standard syntax */
+}
