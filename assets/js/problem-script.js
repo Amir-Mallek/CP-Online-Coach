@@ -19,7 +19,7 @@ let hour = 0;
 let timer;
 
 //wlh ya mr la aamlou chatgpt
-
+// test test
 function runTimer() {
     timer = setInterval(() => {
         sec++;
