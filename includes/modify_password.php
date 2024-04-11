@@ -1,9 +1,8 @@
 <?php
-session_start();
 require_once('../includes/DB_Connexion.php');
 $db=DB_Connexion::getInstance();
-
-$user = 11;
+require_once '../includes/userChecker.php';
+$user=$user_id;
 $query = $db->prepare("SELECT password FROM public.user WHERE id=?");
 $query->execute(array($user));
 $hashedPassword = $query->fetch(PDO::FETCH_ASSOC);
@@ -29,5 +28,5 @@ if ($hashedPassword && isset($_POST['old_password']) && isset($_POST['new_passwo
     $_SESSION['pasw_message'] = "Missing parameters!";
 }
 
-header("Location: http://localhost/cp-application/pages/password_page.php");
+header("Location: http://localhost:8000/pages/settings.php");
 exit();

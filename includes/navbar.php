@@ -48,21 +48,31 @@
 <nav>
 
 <div id="navbar-container" class="vstack gap-2 ms-3 me-1 mt-3 position-fixed top-0 end-0">
-    <button id="index" class="rounded-pill mb-2" data-bs-toggle="tooltip" data-bs-placement="left" title="Home">
+    <a href="http://localhost:8000">
+    <button  id="index" class="rounded-pill mb-2" data-bs-toggle="tooltip" data-bs-placement="left" title="Home">
         <i class="bi bi-bing"></i>
     </button>
+    </a>
+    <a href="http://localhost:8000/pages/all_lvls.php">
     <button id="problems" class="rounded-pill mb-2 " data-bs-toggle="tooltip" data-bs-placement="left" title="Problems" >
         <i class="bi bi-code-slash"></i>
     </button>
-    <button id="profile" class="rounded-pill mb-2 " data-bs-toggle="tooltip" data-bs-placement="left" title="Profile" >
-        <i class="bi bi-person"></i>
-    </button>
+    </a>
+
+<!--    <button id="profile" class="rounded-pill mb-2 " data-bs-toggle="tooltip" data-bs-placement="left" title="Profile" >-->
+<!--        <i class="bi bi-person"></i>-->
+<!--    </button>-->
+    <a href="http://localhost:8000/pages/contact_us.php">
     <button id="contact-us" class="rounded-pill mb-2 " data-bs-toggle="tooltip" data-bs-placement="left" title="Contact Us" >
         <i class="bi bi-envelope-at"></i>
     </button>
+    </a>
+    <a href="http://localhost:8000/pages/settings.php">
     <button id="settings" class="rounded-pill mb-2 " data-bs-toggle="tooltip" data-bs-placement="left" title="Settings">
         <i class="bi bi-sliders2"></i>
     </button>
+    </a>
+
 </div>
 <?php
 // Check if the current page is not "index.php"

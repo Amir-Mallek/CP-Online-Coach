@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
+require_once '../auto_load.php';
 require_once('../includes/DB_Connexion.php');
 $db=DB_Connexion::getInstance();
-$user=11;
+require_once '../includes/userChecker.php';
+$user=$user_id;
 function userinfo($champ)
 {
     global $db,$user;
@@ -12,19 +14,19 @@ function userinfo($champ)
     $row = $result->fetch(PDO::FETCH_ASSOC);
     echo isset($row[$champ]) ? htmlspecialchars($row[$champ]) : '';
 }
-session_start();
 
 ?>
 
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <?php link_bootstrap_style(); ?>
     <link rel="stylesheet" href="../assets/css/settings.css">
     <title>Settings</title>
 
 </head>
 <body style="margin-top:4%;">
-
+<?php require_navbar(); ?>
 <header class="  text-white text-center">
     <div class="container" style="height: 606px;">
 
@@ -46,7 +48,7 @@ session_start();
 
                 <div class="d-flex align-items-start" style="margin-left: 12%">
                     <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                        <a href="http://localhost/cp-application/pages/settings.php" class="nav-link btn "aria-selected="false" >Account</a>
+                        <a href="settings.php" class="nav-link btn "aria-selected="false" >Account</a>
                         <a class="nav-link active " id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Password</a>
                         <a href="http://localhost/cp-application/contact_us" class="nav-link btn "aria-selected="false" >Support</a>
                         <a href="http://localhost/cp-application/login" class="nav-link btn "aria-selected="false" >Logout</a>

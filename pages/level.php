@@ -1,6 +1,5 @@
 <?php
-//$level_id = $_GET['level_id'];
-$level_id = 1;
+$level_id = $_GET['level_id'];
 
 require_once '../includes/userChecker.php';
 require_once '../auto_load.php';
