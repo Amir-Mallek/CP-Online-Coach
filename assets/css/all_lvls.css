@@ -23,7 +23,7 @@
 
 body {
     background-color: #061A26; /* New background color for the entire webpage */
-    margin-top: 6% ;/* Use viewport height for adaptive margin */
+    margin-top: 5% ;/* Use viewport height for adaptive margin */
     margin-bottom: 0;
     margin-left: 1%; /* Use percentage for adaptive margin */
     margin-right: 10%; /* Use percentage for adaptive margin */

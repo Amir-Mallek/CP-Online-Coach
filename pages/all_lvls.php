@@ -1,8 +1,9 @@
 <?php
-require_once("Status_Table.php");
+require_once '../auto_load.php';
 require_once('../includes/DB_Connexion.php');
 $db=DB_Connexion::getInstance();
-$user=1;
+require_once '../includes/userChecker.php';
+$user=$user_id;
 function userinfo($champ)
 {
     global $db,$user;
@@ -69,7 +70,6 @@ function lvlState($lvl)
     }
 }
 
-session_start();
 
 ?>
 <!DOCTYPE html>
@@ -78,11 +78,13 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <?php link_bootstrap_style(); ?>
     <link rel="stylesheet" href="../assets/css/all_lvls.css">
     <title>lvls</title>
 </head>
 
 <body>
+<?php require_navbar(); ?>
 <?php
 $query =$db->prepare(  "SELECT count(*) FROM public.level");
 $query->execute();
@@ -96,7 +98,7 @@ for ($i = 1; $i <= $nblvl; $i++) {
 
 ?>
 <script>function redirectToPage(lvl){
-        window.location.href = "amir_page.php?key1="+lvl;
+        window.location.href = "level.php?level_id="+lvl;
 
     }</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
