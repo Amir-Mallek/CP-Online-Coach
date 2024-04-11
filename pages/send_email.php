@@ -5,9 +5,9 @@ $email = $_POST["email"];
 $subject = $_POST["subject"];
 $message = $_POST["message"];
 
-require 'C:\xampp\htdocs\CP-Online-Coach\includes\PHPMailer\src\Exception.php';
-require 'C:\xampp\htdocs\CP-Online-Coach\includes\PHPMailer\src\PHPMailer.php';
-require 'C:\xampp\htdocs\CP-Online-Coach\includes\PHPMailer\src\SMTP.php';
+require '../includes/PHPMailer/src/Exception.php';
+require '../includes/PHPMailer/src/PHPMailer.php';
+require '../includes/PHPMailer/src/SMTP.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -67,7 +67,7 @@ try {
     ';
 
     $mail->send();
-    header("Location: \CP-Online-Coach\index.php");
+    header("Location: ../");
 } catch (Exception $e) {
     echo "Error: {$mail->ErrorInfo}";
 }

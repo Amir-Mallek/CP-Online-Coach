@@ -66,7 +66,7 @@ if ($password_matching && $username_uniqueness && $mail_uniqueness) {
     unset($_SESSION['github']);
     unset($_SESSION['linkedin']);
     session_destroy();
-    header("\CP-Online-Coach\pages\location:login.php?account_created=true");
+    header("location:login.php?account_created=true");
 }
 
 ?>

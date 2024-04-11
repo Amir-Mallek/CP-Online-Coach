@@ -16,7 +16,7 @@ if($password_matching && isset($_POST['password']) && isset($_POST['confirm-pass
     $sql = $db_connection->prepare("UPDATE postgres.public.user SET password = ? WHERE email = ?");
     $values=array($new_password, $email);
     $sql->execute($values);
-    header("location:\CP-Online-Coach\pages\login.php?reset=successfull");
+    header("location:login.php?reset=successfull");
     
 }
 ?>
@@ -26,12 +26,12 @@ if($password_matching && isset($_POST['password']) && isset($_POST['confirm-pass
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reset Password</title>
-    <link rel="stylesheet" type="text/css" href="\CP-Online-Coach\assets\css\reset.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/reset.css">
 </head>
 <body>
     <div class="reset">
             <h1 class="title"> Reset your password </h1>
-            <form action="\CP-Online-Coach\pages\reset.php?mail='.<?php echo urlencode($email);?>.'" method="post">
+            <form action="reset.php?mail='.<?php echo urlencode($email);?>.'" method="post">
                 <input type="hidden" name="mail" value="<?php echo htmlspecialchars($email); ?>">
                 <div class="input-group">
                     <label for="password">Enter your new password </label>

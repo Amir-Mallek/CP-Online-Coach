@@ -63,8 +63,8 @@ if ($password_matching && $username_uniqueness && $mail_uniqueness && $post) {
         $file_tmp = $_FILES['photo']['tmp_name'];
         $file_name = $_FILES['photo']['name'];
         $file_extension = pathinfo($file_name, PATHINFO_EXTENSION);
-        $new_file_name=$username.'.'.$file_extension;
-        $upload_directory="C:\\xampp\htdocs\CP-Online-Coach\profiles_images\\";
+        $new_file_name=uniqid().'.'.$file_extension;
+        $upload_directory="../profiles_images/";
         if(move_uploaded_file($file_tmp, $upload_directory.$new_file_name)){
             $sql_insert = "INSERT INTO postgres.public.user(name,surname,email,username,password,codeforces_acc,leetcode_acc,github_acc,linkedin_acc,image_name) 
             VALUES ('$name','$surname','$mail','$username','$pass','$codeforces','$leetcode','$github','$linkedin','$new_file_name')";
@@ -86,7 +86,7 @@ if ($password_matching && $username_uniqueness && $mail_uniqueness && $post) {
     unset($_SESSION['github']);
     unset($_SESSION['linkedin']);
     session_destroy();
-    header("location:\CP-Online-Coach\pages\login.php?account_created=true");
+    header("location:login.php?account_created=true");
 }
 
 ?>
@@ -100,35 +100,35 @@ if ($password_matching && $username_uniqueness && $mail_uniqueness && $post) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
 
-    <link rel="stylesheet" href="\CP-Online-Coach\assets\css\signin.css">
+    <link rel="stylesheet" href="../assets/css/signin.css">
 </head>
 
 <body>
     <div class="signin">
         <h1 class="title"> Sign Up </h1>
-        <form action="\CP-Online-Coach\pages\signin.php" id="signup-form" method="POST" enctype="multipart/form-data" >
+        <form action="signin.php" id="signup-form" method="POST" enctype="multipart/form-data" >
             <div class="input-group">
-                <label for="name">Name</label>
+                <label for="name">Name*</label>
                 <input id="name" name="name" type="text" required value="<?php echo isset($_SESSION['name']) ? $_SESSION['name'] : ''; ?>">
             </div>
             <div class="input-group">
-                <label for="surname">Surname</label>
+                <label for="surname">Surname*</label>
                 <input id="surname" name="surname" type="text" required value="<?php echo isset($_SESSION['surname']) ? $_SESSION['surname'] : ''; ?>">
             </div>
             <div id="input-email" class="input-group">
-                <label for="mail">Email</label>
+                <label for="mail">Email*</label>
                 <input id="mail" name="mail" type="email" required value="<?php echo isset($_SESSION['mail']) ? $_SESSION['mail'] : ''; ?>">
             </div>
             <div class="input-group">
-                <label for="username">Username</label>
+                <label for="username">Username*</label>
                 <input id="username" name="username" type="text" required value="<?php echo isset($_SESSION['username']) ? $_SESSION['username'] : ''; ?>">
             </div>
             <div class="input-group">
-                <label for="password">Create Password</label>
+                <label for="password">Create Password*</label>
                 <input id="password" name="password" type="password" required>
             </div>
             <div class="input-group">
-                <label for="password-conf">Confirm Password</label>
+                <label for="password-conf">Confirm Password*</label>
                 <input id="password-conf" name="password-conf" type="password" required>
             </div>
             <div class="input-group">

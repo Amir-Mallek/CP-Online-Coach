@@ -14,9 +14,9 @@ if(isset($_POST['emailreset'])){
     }
 }
 
-require 'C:\xampp\htdocs\CP-Online-Coach\includes\PHPMailer\src\Exception.php';
-require 'C:\xampp\htdocs\CP-Online-Coach\includes\PHPMailer\src\PHPMailer.php';
-require 'C:\xampp\htdocs\CP-Online-Coach\includes\PHPMailer\src\SMTP.php';
+require '../includes/PHPMailer/src/Exception.php';
+require '../includes/PHPMailer/src/PHPMailer.php';
+require '../includes/PHPMailer/src/SMTP.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -102,7 +102,7 @@ try {
             <div class="container">
                 <h1>  Reset your password </h1>
                 <p> Click the link below to redirect you to your password reset page </p>
-                <a href="http://localhost/CP-Online-Coach/pages/reset.php?mail=' . urlencode($email) . '" class="btn">Reset</a>
+                <a href="http://localhost:8000/pages/reset.php?mail=' . urlencode($email) . '" class="btn">Reset</a>
                 </div>
         </body>
         </html>
@@ -110,7 +110,7 @@ try {
 
     $mail->send();
     echo "Email sent successfully";
-    header("Location: \CP-Online-Coach\pages\login.php?sent=successfull");
+    header("Location:login.php?sent=successfull");
 } catch (Exception $e) {
     echo "Error: {$mail->ErrorInfo}";
 }

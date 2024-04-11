@@ -1,7 +1,8 @@
 <?php
+session_start();
     $db_connection = new PDO('pgsql:host=aws-0-eu-central-1.pooler.supabase.com;dbname=postgres','postgres.smtyqkucrdolnrkzwqjp','ezLz72hM(dJv!@E');
     if(isset($_SESSION['user_id'])){
-        header("location:\CP-Online-Coach\index.php");
+        header("location:../");
         
     }
 ?>
@@ -11,7 +12,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="\CP-Online-Coach\assets\css\login.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/login.css">
 </head>
 
 
@@ -32,7 +33,7 @@
         echo 'document.body.appendChild(alertBox);';         
         echo 'setTimeout(function() {';
         echo '    alertBox.style.display = "none";';        
-        echo '    window.location.href = "/CP-Online-Coach/pages/login.php";';                                
+        echo '    window.location.href = "login.php";';                                
         echo '}, 3000);'; 
         echo '</script>';
         
@@ -54,7 +55,7 @@
         echo 'document.body.appendChild(alertBox);';         
         echo 'setTimeout(function() {';
         echo '    alertBox.style.display = "none";';        
-        echo '    window.location.href = "/CP-Online-Coach/pages/login.php";';                                
+        echo '    window.location.href = "login.php";';                                
         echo '}, 3000);'; 
         echo '</script>';
         
@@ -75,7 +76,7 @@
         echo 'document.body.appendChild(alertBox);';         
         echo 'setTimeout(function() {';
         echo '    alertBox.style.display = "none";';        
-        echo '    window.location.href = "/CP-Online-Coach/pages/login.php";';                                
+        echo '    window.location.href = "login.php";';                                
         echo '}, 3000);'; 
         echo '</script>';
         
@@ -83,7 +84,7 @@
 ?>
     <div class="login">
         <h1 class="title"> Login </h1>
-        <form action="\CP-Online-Coach\pages\login.php" method="post">
+        <form action="login.php" method="post">
             <div class="input-group">
                 <label for="username">Username / Email</label>
                 <input type="text" id="username" name="username" value="<?php echo isset($_SESSION['username']) ? $_SESSION['username'] : ''; ?>" required>
@@ -96,8 +97,8 @@
             </div>
             <button class="login_button" type="submit" style="font-size:100%">Login</button>
         </form>
-        <a id="password_forgotten" href="\CP-Online-Coach\pages\password_reset.php"> Forget Password </a> <br>
-        <a id="create_account" href="\CP-Online-Coach\pages\signin.php"> Create an account </a>
+        <a id="password_forgotten" href="password_reset.php"> Forget Password </a> <br>
+        <a id="create_account" href="signin.php"> Create an account </a>
     </div>
     <?php
     
@@ -114,10 +115,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['username']) && isset($
         // Verify the entered password against the stored hash
         if (password_verify($password, $user['password'])) {
             // Login successful
-            session_start();
             $_SESSION['user_id'] = $user['id'];
-            header("location:\CP-Online-Coach\index.php");
-            /* Page mouhib */
+            header("location:../");
+            
         } else {
             // Passwords don't match, login failed
             $_SESSION['username']=$username;

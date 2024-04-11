@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us</title>
-    <link rel="stylesheet" type="text/css" href="\CP-Online-Coach\assets\css\contactUs.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/contactUs.css">
 
 </head>
 <body>
@@ -23,7 +23,7 @@
         echo 'document.header.appendChild(alertBox);';         
         echo 'setTimeout(function() {';
         echo '    alertBox.style.display = "none";';        
-        echo '    window.location.href = "\CP-Online-Coach\pages\contactUs.php";';                                
+        echo '    window.location.href = "../pages/contactUs.php";';                                
         echo '}, 3000);'; 
         echo '</script>';
         
@@ -32,7 +32,7 @@
 ?>
 <div class="contact">
 <h1 class="title"> Contact Us</h1>
-<form action="\CP-Online-Coach\pages\send_email.php" method="post">
+<form action="send_email.php" method="post">
     <div class="input-group">
     <label for="name">Name</label>
     <input type="text" id="name" name="name" required><br>
