@@ -2,7 +2,7 @@
 
 if(isset($_POST['emailreset'])){
     $db_connection = new PDO('pgsql:host=aws-0-eu-central-1.pooler.supabase.com;dbname=postgres','postgres.smtyqkucrdolnrkzwqjp','ezLz72hM(dJv!@E');
-    $email = $_POST['emailreset'];
+    $email = strtolower($_POST['emailreset']);
     $stmt = $db_connection->prepare("SELECT id FROM postgres.public.user WHERE email = :mail");
     $stmt->execute(['mail' => $email]);
     

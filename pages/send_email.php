@@ -67,7 +67,7 @@ try {
     ';
 
     $mail->send();
-    header("Location: index.php");
+    header("Location: \CP-Online-Coach\index.php");
 } catch (Exception $e) {
     echo "Error: {$mail->ErrorInfo}";
 }

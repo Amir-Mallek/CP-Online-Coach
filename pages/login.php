@@ -1,7 +1,7 @@
 <?php
     $db_connection = new PDO('pgsql:host=aws-0-eu-central-1.pooler.supabase.com;dbname=postgres','postgres.smtyqkucrdolnrkzwqjp','ezLz72hM(dJv!@E');
     if(isset($_SESSION['user_id'])){
-        header("location:index.php");
+        header("location:\CP-Online-Coach\index.php");
         
     }
 ?>
@@ -102,10 +102,10 @@
     <?php
     
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['username']) && isset($_POST['password'])) {   
-    $username = $_POST['username'];
+    $username = strtolower(trim($_POST['username']));
     $password = $_POST['password'];
 
-    $stmt = $db_connection->prepare("SELECT id, password FROM postgres.public.user WHERE username = :username OR email = :username");
+    $stmt = $db_connection->prepare("SELECT id, password FROM postgres.public.user WHERE LOWER(username) = :username OR email = :username");
     $stmt->execute(['username' => $username]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -116,7 +116,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['username']) && isset($
             // Login successful
             session_start();
             $_SESSION['user_id'] = $user['id'];
-            header("location:index.php");
+            header("location:\CP-Online-Coach\index.php");
             /* Page mouhib */
         } else {
             // Passwords don't match, login failed
