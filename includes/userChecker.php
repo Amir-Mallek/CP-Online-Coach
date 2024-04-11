@@ -1,10 +1,6 @@
 <?php
 session_start();
 
-//just for testing
-$_SESSION['user_id'] = 1;
-
-
 if (!isset($_SESSION['user_id'])) {
     header("location: http://localhost:8000/pages/login.php");
     exit;

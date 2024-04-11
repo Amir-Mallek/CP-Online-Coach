@@ -6,6 +6,9 @@ require_once 'Badges.php';
 
 $attempt_data = json_decode(file_get_contents("php://input"), true);
 
+$problems_table = new Problems_Table();
+$problems_table->update_acceptance($attempt_data['problem_id'], $attempt_data['verdict']=='AC');
+
 $attempt = [
     'attempt_number' => $attempt_data['attempt_number'],
     'verdict' => $attempt_data['verdict'],

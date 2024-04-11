@@ -35,7 +35,7 @@ function userinfo($champ)
             <div class="col-sm-4" style="text-align: left; position: relative" >
                 <div type="image" class="image-container" >
 
-                    <img id="profile" class="mb-5 profile-image" onerror="this.src='https://scontent.fnbe1-2.fna.fbcdn.net/v/t1.6435-9/31494307_924010611103448_7906677145714294784_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_ohc=O6cqlnbIGsoAX-8RC4o&_nc_ht=scontent.fnbe1-2.fna&oh=00_AfAqEXoNqTy21s6b3zkOVDZXg9CYWMonXSg_vgEZ9AHvfg&oe=662AD05F'" src="http://localhost:8000/profile_images/<?php echo htmlspecialchars(userinfo("image_name")); ?>" alt="Profile Image">
+                    <img id="profile" class="mb-5 profile-image" onerror="this.src='https://scontent.fnbe1-2.fna.fbcdn.net/v/t1.6435-9/31494307_924010611103448_7906677145714294784_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_ohc=O6cqlnbIGsoAX-8RC4o&_nc_ht=scontent.fnbe1-2.fna&oh=00_AfAqEXoNqTy21s6b3zkOVDZXg9CYWMonXSg_vgEZ9AHvfg&oe=662AD05F'" src="http://localhost:8000/profiles_images/<?php echo htmlspecialchars(userinfo("image_name")); ?>" alt="Profile Image">
                     <form action="../includes/modify-image.php" method="post" enctype="multipart/form-data">
                         <?php if (isset($_SESSION['success_message'])) {
                             echo "<span  class='custom-text text-center' style='font-size: x-small'> " . $_SESSION['success_message'] . "</span>";

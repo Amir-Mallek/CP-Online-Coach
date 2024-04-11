@@ -79,10 +79,10 @@ link_bootstrap_script();
             <table class="table mt-5 text-center">
                 <thead>
                 <tr>
-                    <th scope="col">Staus</th>
+                    <th scope="col">Status</th>
                     <th scope="col">Title</th>
                     <th scope="col">Platform</th>
-                    <th scope="col">Acceptence</th>
+                    <th scope="col">Acceptance</th>
                     <th scope="col">Difficulty</th>
                 </tr>
                 </thead>
@@ -94,7 +94,7 @@ link_bootstrap_script();
                             <a href="problem.php?problem_id=<?=$problem->id ?>"><?= $problem->title ?></a>
                         </td>
                         <td><?= $problem->platform ?></td>
-                        <td><?= $problem->acceptance * 100 ?>%</td>
+                        <td><?= $problems_table->get_acceptance($problem->id) ?>%</td>
                         <td><?= $problem->difficulty ?></td>
                     </tr>
                 <?php endforeach; ?>

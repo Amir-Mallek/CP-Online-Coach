@@ -71,4 +71,4 @@ try {
 } catch (Exception $e) {
     echo "Error: {$mail->ErrorInfo}";
 }
-?>
+

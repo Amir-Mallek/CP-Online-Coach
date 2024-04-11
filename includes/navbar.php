@@ -62,7 +62,7 @@
 <!--    <button id="profile" class="rounded-pill mb-2 " data-bs-toggle="tooltip" data-bs-placement="left" title="Profile" >-->
 <!--        <i class="bi bi-person"></i>-->
 <!--    </button>-->
-    <a href="http://localhost:8000/pages/contact_us.php">
+    <a href="http://localhost:8000/pages/contactUs.php">
     <button id="contact-us" class="rounded-pill mb-2 " data-bs-toggle="tooltip" data-bs-placement="left" title="Contact Us" >
         <i class="bi bi-envelope-at"></i>
     </button>

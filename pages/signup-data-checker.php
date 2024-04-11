@@ -69,4 +69,3 @@ if ($password_matching && $username_uniqueness && $mail_uniqueness) {
     header("location:login.php?account_created=true");
 }
 
-?>

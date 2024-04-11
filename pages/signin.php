@@ -57,23 +57,18 @@ if ($password_matching && $username_uniqueness && $mail_uniqueness && $post) {
     $leetcode=trim($_POST['leetcode']);
     $github=trim($_POST['github']);
     $linkedin=trim($_POST['linkedin']);
-    
+    $new_file_name='default.png';
     //Save Uploaded Image 
-    if( isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
+    if(isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
         $file_tmp = $_FILES['photo']['tmp_name'];
         $file_name = $_FILES['photo']['name'];
         $file_extension = pathinfo($file_name, PATHINFO_EXTENSION);
         $new_file_name=uniqid().'.'.$file_extension;
         $upload_directory="../profiles_images/";
-        if(move_uploaded_file($file_tmp, $upload_directory.$new_file_name)){
-            $sql_insert = "INSERT INTO postgres.public.user(name,surname,email,username,password,codeforces_acc,leetcode_acc,github_acc,linkedin_acc,image_name) 
+        move_uploaded_file($file_tmp, $upload_directory.$new_file_name);
+    }
+    $sql_insert = "INSERT INTO postgres.public.user(name,surname,email,username,password,codeforces_acc,leetcode_acc,github_acc,linkedin_acc,image_name) 
             VALUES ('$name','$surname','$mail','$username','$pass','$codeforces','$leetcode','$github','$linkedin','$new_file_name')";
-        }
-    }
-    else{
-       $sql_insert = "INSERT INTO postgres.public.user(name,surname,email,username,password,codeforces_acc,leetcode_acc,github_acc,linkedin_acc) 
-        VALUES ('$name','$surname','$mail','$username','$pass','$codeforces','$leetcode','$github','$linkedin')";
-    }
     $result_insert = $db_connection->query($sql_insert);
     
     
@@ -151,7 +146,7 @@ if ($password_matching && $username_uniqueness && $mail_uniqueness && $post) {
                 <label for="photo">Insert your photo</label>
                 <div class="photo-container">
                     <span id="photo-span">Choose File</span>
-                    <input id="photo" type='file' name='photo'accept=".jpg, .jpeg, .png" >
+                    <input id="photo" type='file' name='photo' accept=".jpg, .jpeg, .png" >
                 </div>
             </div>
             <?php
