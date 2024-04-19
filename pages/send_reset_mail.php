@@ -102,7 +102,8 @@ try {
             <div class="container">
                 <h1>  Reset your password </h1>
                 <p> Click the link below to redirect you to your password reset page </p>
-                <a href="http://192.168.100.20:8000/pages/reset.php?mail=' . urlencode($email) . '" class="btn">Reset</a>
+                <?php $_SESSION["mail"]=$email; ?>
+                <a href="http://192.168.100.20:8000/pages/reset.php" class="btn">Reset</a>
                 </div>
         </body>
         </html>

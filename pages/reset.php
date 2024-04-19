@@ -1,6 +1,6 @@
 <?php    
 $db_connection = new PDO('pgsql:host=aws-0-eu-central-1.pooler.supabase.com;dbname=postgres','postgres.smtyqkucrdolnrkzwqjp','ezLz72hM(dJv!@E');
-$email=$_GET['mail'];
+$email=$_SESSION['mail'];
 if (isset($_POST['password']) && isset($_POST['confirm-pass'])){
     $password=$_POST['password'];
     $confirmation=$_POST['confirm-pass'];
@@ -31,7 +31,7 @@ if($password_matching && isset($_POST['password']) && isset($_POST['confirm-pass
 <body>
     <div class="reset">
             <h1 class="title"> Reset your password </h1>
-            <form action="reset.php?mail='.<?php echo urlencode($email);?>.'" method="post">
+            <form action="reset.php" method="post">
                 <input type="hidden" name="mail" value="<?php echo htmlspecialchars($email); ?>">
                 <div class="input-group">
                     <label for="password">Enter your new password </label>
