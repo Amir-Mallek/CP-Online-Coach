@@ -1,5 +1,6 @@
 <?php    
 $db_connection = new PDO('pgsql:host=aws-0-eu-central-1.pooler.supabase.com;dbname=postgres','postgres.smtyqkucrdolnrkzwqjp','ezLz72hM(dJv!@E');
+if (isset($_SESSION['mail']))
 $email=$_SESSION['mail'];
 if (isset($_POST['password']) && isset($_POST['confirm-pass'])){
     $password=$_POST['password'];
