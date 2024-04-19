@@ -264,7 +264,7 @@ function addAttempt() {
 function showNewBadge(badge) {
     toastContainer.innerHTML += `<div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
                     <div class="toast-header">
-                        <img src="http://localhost:8000/assets/img/badges/${badge['img_name']}" class="rounded me-2" width="20%">
+                        <img src="../assets/img/badges/${badge['img_name']}" class="rounded me-2" width="20%">
                         <strong class="me-auto">${badge['title']}</strong>
                         <small class="text-body-secondary">just now</small>
                         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>

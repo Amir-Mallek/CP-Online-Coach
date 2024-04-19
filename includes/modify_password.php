@@ -28,5 +28,5 @@ if ($hashedPassword && isset($_POST['old_password']) && isset($_POST['new_passwo
     $_SESSION['pasw_message'] = "Missing parameters!";
 }
 
-header("Location: ../pages/settings.php");
+header("Location: ../pages/password_page.php");
 exit();
