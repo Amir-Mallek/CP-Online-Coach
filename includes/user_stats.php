@@ -16,7 +16,7 @@ function buildUserSection(): void
     function buildUserLink($account, string $icon): void
     {
         global $user_data;
-        if (isset($user_data->$account)) {
+        if (isset($user_data->$account) && !empty($user_data->$account)) {
             $text = basename(parse_url($user_data->$account, PHP_URL_PATH));
             buildLink($user_data->$account, $icon, $text);
         }
