@@ -48,26 +48,22 @@
 <nav>
 
 <div id="navbar-container" class="vstack gap-2 ms-3 me-1 mt-3 position-fixed top-0 end-0">
-    <a href="http://localhost:8000">
+    <a href="../">
     <button  id="index" class="rounded-pill mb-2" data-bs-toggle="tooltip" data-bs-placement="left" title="Home">
         <i class="bi bi-bing"></i>
     </button>
     </a>
-    <a href="http://localhost:8000/pages/all_lvls.php">
+    <a href="../pages/all_lvls.php">
     <button id="problems" class="rounded-pill mb-2 " data-bs-toggle="tooltip" data-bs-placement="left" title="Problems" >
         <i class="bi bi-code-slash"></i>
     </button>
     </a>
-
-<!--    <button id="profile" class="rounded-pill mb-2 " data-bs-toggle="tooltip" data-bs-placement="left" title="Profile" >-->
-<!--        <i class="bi bi-person"></i>-->
-<!--    </button>-->
-    <a href="http://localhost:8000/pages/contactUs.php">
+    <a href="../pages/contactUs.php">
     <button id="contact-us" class="rounded-pill mb-2 " data-bs-toggle="tooltip" data-bs-placement="left" title="Contact Us" >
         <i class="bi bi-envelope-at"></i>
     </button>
     </a>
-    <a href="http://localhost:8000/pages/settings.php">
+    <a href="../pages/settings.php">
     <button id="settings" class="rounded-pill mb-2 " data-bs-toggle="tooltip" data-bs-placement="left" title="Settings">
         <i class="bi bi-sliders2"></i>
     </button>

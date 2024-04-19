@@ -10,4 +10,4 @@ foreach ($form as $input){
         $query->execute(array($_POST[$input],$user=11));
     }
 }
-header("Location: http://localhost:8000/pages/settings.php");
+header("Location: ../pages/settings.php");

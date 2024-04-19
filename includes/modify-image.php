@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['error_message'] = "Please select a file.";
     }
 
-    header("Location: http://localhost:8000/pages/settings.php");
+    header("Location: ../pages/settings.php");
 }
 else{
     echo  htmlspecialchars("error");

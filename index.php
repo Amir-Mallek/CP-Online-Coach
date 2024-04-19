@@ -22,7 +22,7 @@ require_once 'auto_load.php';
         <div class="col-lg-3 py-0 px-3 h-100 shadow-sm text-center custom-card" id="left-card">
             <div class="row py-4 ">
                 <div class="col-md-5 d-flex align-items-center justify-content-center">
-                    <img alt="profile picture" class="img-fluid rounded p-1 shadow" style="max-height: 128px" src="http://localhost:8000/profiles_images/<?php echo htmlspecialchars($user_data->image_name); ?>">
+                    <img alt="profile picture" class="img-fluid rounded p-1 shadow" style="max-height: 128px" src="profiles_images/<?php echo htmlspecialchars($user_data->image_name); ?>">
                 </div>
                 <div class="col-md-6 px-2 d-flex flex-column justify-content-center text-start ">
                     <p class="h-6 primary mb-2 mt-3 fw-bold "><?=$user_data->username?></p>

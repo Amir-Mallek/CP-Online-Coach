@@ -50,8 +50,8 @@ function userinfo($champ)
                     <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                         <a href="settings.php" class="nav-link btn "aria-selected="false" >Account</a>
                         <a class="nav-link active " id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Password</a>
-                        <a href="http://localhost/cp-application/contact_us" class="nav-link btn "aria-selected="false" >Support</a>
-                        <a href="http://localhost/cp-application/login" class="nav-link btn "aria-selected="false" >Logout</a>
+                        <a href="contactUs.php" class="nav-link btn "aria-selected="false" >Support</a>
+                        <a href="logout.php" class="nav-link btn "aria-selected="false" >Logout</a>
                     </div>
 
                 </div>

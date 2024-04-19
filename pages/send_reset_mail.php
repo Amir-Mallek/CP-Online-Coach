@@ -102,7 +102,7 @@ try {
             <div class="container">
                 <h1>  Reset your password </h1>
                 <p> Click the link below to redirect you to your password reset page </p>
-                <a href="http://localhost:8000/pages/reset.php?mail=' . urlencode($email) . '" class="btn">Reset</a>
+                <a href="reset.php?mail=' . urlencode($email) . '" class="btn">Reset</a>
                 </div>
         </body>
         </html>
